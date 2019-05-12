@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+collections:
+  - name: "podcast" # Used in routes, e.g., /admin/collections/blog
+    label: "Podcast"
+    folder: "_podcast"
+    create: true
+    slug: "{{slug}}" # {{year}}-{{month}}-{{day}}-{{slug}}
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+  - name: "episode" # Used in routes, e.g., /admin/collections/blog
+    label: "Episode"
+    folder: "_episodes"
+    create: true
+    slug: "{{slug}}" # {{year}}-{{month}}-{{day}}-{{slug}}
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+media_folder: "images/uploads" # Media files will be stored in the repo under images/uploads
+publish_mode: editorial_workflow
