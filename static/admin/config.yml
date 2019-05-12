@@ -4,7 +4,7 @@ backend:
 collections:
   - name: "podcast" # Used in routes, e.g., /admin/collections/blog
     label: "Podcast"
-    folder: "src/cms/collections/podcasts"
+    folder: "static/collections/podcasts"
     create: true
     slug: "{{slug}}" # {{year}}-{{month}}-{{day}}-{{slug}}
     fields:
@@ -12,7 +12,7 @@ collections:
       - { label: "Image", name: "image", widget: "image" }
   - name: "episode" # Used in routes, e.g., /admin/collections/blog
     label: "Episode"
-    folder: "src/cms/collections/episodes"
+    folder: "static/collections/episodes"
     create: true
     slug: "{{slug}}" # {{year}}-{{month}}-{{day}}-{{slug}}
     fields:
