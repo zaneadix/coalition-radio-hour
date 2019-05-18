@@ -9,7 +9,7 @@ itunesPodcastData:
   block: false
   category1: 'Arts:Performing Arts'
   category2: Comedy
-  category3: _none_
+  category3: _blank_
   copyright: Zane Adickes 2019
   explicit: false
   owner: Zane Adickes
