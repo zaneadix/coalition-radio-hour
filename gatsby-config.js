@@ -24,7 +24,6 @@ module.exports = {
     },
     {
       resolve: `gatsby-transformer-remark`,
-      options: {},
     },
     {
       resolve: `gatsby-plugin-netlify-cms`,

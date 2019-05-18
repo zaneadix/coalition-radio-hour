@@ -76,17 +76,18 @@ aliases:
   ]
 
 collections:
-  - name: "producers"
-    label: "Producers"
-    folder: "src/cms/collections/producers"
+  - name: crew
+    label: Crew
+    folder: src/cms/collections/crew
     create: true
     slug: "{{slug}}"
+    identifier_field: name
     fields:
-      - { label: "Collection", name: "collection", widget: "hidden", default: "producers"}
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Email", name: "email", widget: "string" }
-      - { label: "Photo", name: "image", widget: "image" }
+      - { label: Collection, name: "collection", widget: "hidden", default: "producers"}
+      - { label: Name, name: "name", widget: "string" }
+      - { label: Title, name: "title", widget: "string" }
+      - { label: Email, name: "email", widget: "string" }
+      - { label: Photo, name: "image", widget: "image" }
   
   - name: "guests"
     label: "Guests"
@@ -114,8 +115,8 @@ collections:
         name: "itunesPodcastData"
         widget: "object"
         fields:
-          - { label: "Author", name: "author", widget: "relation", collection: "producers", searchFields: ["name"], valueField: "name" }
-          - { label: "Owner", name: "owner", widget: "relation", collection: "producers", searchFields: ["name"], valueField: "name", required: false }
+          - { label: "Author", name: "author", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name" }
+          - { label: "Owner", name: "owner", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name", required: false }
           - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
           - { label: "Type", name: "type", widget: "select", default: "Episodic", options: ["Episodic", "Serial"] }
           - { label: "Copyright", name: "copyright", widget: "string", default: *copyright, required: false }
@@ -145,7 +146,7 @@ collections:
           - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
           - { label: "Summary", name: "summary", widget: "string", required: false }
           - { label: "Type", name: "type", widget: "select", default: "Full", options: ["Full", "Bonus", "Trailer"] }
-          - { label: "Author", name: "author", widget: "relation", collection: "producers", searchFields: ["name"], valueField: "name", required: false }
+          - { label: "Author", name: "author", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name", required: false }
           - { label: "Explicit", name: "explicit", widget: "boolean", default: false }
           - { label: "Block", name: "block", widget: "boolean", default: false }
 
