@@ -3,7 +3,7 @@ collection: podcasts
 title: Coalition Radio Hour
 description: Welcome to the 1940's
 image: /static/rudawka.jpg
-publishDate: 2019-05-18T01:08:28.300Z
+pubDate: 2019-05-17T15:12:33.026Z
 itunesPodcastData:
   author: Zane Adickes
   block: false
