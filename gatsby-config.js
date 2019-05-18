@@ -1,6 +1,9 @@
+let feedConfig = require("./feed-config")
+
 module.exports = {
   siteMetadata: {
     title: `Coalition Radio Hour Podcast`,
+    siteUrl: "https://www.coalitionradiohour.com",
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `Zane Adickes`,
     podcast: {
@@ -31,7 +34,7 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/index.js`,
       },
     },
-
+    feedConfig,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master # Branch to update (optional; defaults to master)
+  branch: publish
 
 aliases:
   copyright: &copyright "Zane Adickes 2019"
@@ -83,7 +83,7 @@ collections:
     slug: "{{slug}}"
     identifier_field: name
     fields:
-      - { label: Collection, name: "collection", widget: "hidden", default: "producers"}
+      - { label: Collection, name: "collection", widget: "hidden", default: "crew1"}
       - { label: Name, name: "name", widget: "string" }
       - { label: Title, name: "title", widget: "string" }
       - { label: Email, name: "email", widget: "string" }
