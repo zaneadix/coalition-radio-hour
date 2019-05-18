@@ -1,4 +1,5 @@
 ---
+collection: episodes
 podcast: Coalition Radio Hour
 title: First Episode
 date: 2019-05-18T01:15:40.579Z
@@ -13,4 +14,3 @@ itunesEpisodeData:
   summary: episode summary
   type: Full
 ---
-
