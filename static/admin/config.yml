@@ -76,23 +76,33 @@ aliases:
   ]
 
 collections:
-  - label: "Pages"
-    name: "pages"
+  - label: "Podcast"
+    name: "podcast"
     create: true
     files:
-      - label: "Test Page"
-        name: "about"
-        file: "src/cms/tester.yml"
+      - label: "Podcast Details"
+        name: "podcastDetails"
+        file: "src/cms/podcast-details.yml"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: markdown}
-          - label: Team
-            name: team
-            widget: list
-            fields:
-              - {label: Name, name: name, widget: string}
-              - {label: Position, name: position, widget: string}
-              - {label: Photo, name: photo, widget: image}
+        - { label: "Collection", name: "collection", widget: "hidden", default: "podcasts"}
+        - { label: "Title", name: "title", widget: "string" }
+        - { label: "Description", name: "description", widget: "string" }
+        - { label: "Cover Art", name: "image", widget: "image" }
+        - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+        - label: "Itunes Specifics"
+          name: "itunesPodcastData"
+          widget: "object"
+          fields:
+            - { label: "Author", name: "author", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name" }
+            - { label: "Owner", name: "owner", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name", required: false }
+            - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+            - { label: "Type", name: "type", widget: "select", default: "Episodic", options: ["Episodic", "Serial"] }
+            - { label: "Copyright", name: "copyright", widget: "string", default: *copyright, required: false }
+            - { label: "Category 1", name: "category1", widget: "select", options: *categories, default: "_blank_" }
+            - { label: "Category 2", name: "category2", widget: "select", options: *categories, default: "_blank_" }
+            - { label: "Category 3", name: "category3", widget: "select", options: *categories, default: "_blank_" }
+            - { label: "Explicit", name: "explicit", widget: "boolean", default: false }
+            - { label: "Block", name: "block", widget: "boolean", default: false }
 
   - name: crew
     label: Crew
