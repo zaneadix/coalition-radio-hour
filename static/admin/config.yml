@@ -78,11 +78,10 @@ aliases:
 collections:
   - label: "Podcast"
     name: "podcast"
-    create: true
     files:
       - label: "Podcast Details"
         name: "podcastDetails"
-        file: "src/cms/podcast-details.yml"
+        file: "src/cms/podcast-details.md"
         fields:
         - { label: "Collection", name: "collection", widget: "hidden", default: "podcasts"}
         - { label: "Title", name: "title", widget: "string" }
