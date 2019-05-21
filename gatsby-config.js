@@ -3,12 +3,14 @@ let feedConfig = require("./feed-config")
 module.exports = {
   siteMetadata: {
     title: `Coalition Radio Hour Podcast`,
-    siteUrl: "https://www.coalitionradiohour.com",
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `I guess this has to be here`,
     author: `Zane Adickes`,
-    podcast: {
-      title: `Coalition radio Hour`,
-    },
+    // RSS stuff
+    siteUrl: "https://www.coalitionradiohour.com",
+    ttl: 1440,
+    language: "en",
+    countryOfOrigin: "us",
+    copyright: "Copyright 2019 All rights reserved.",
   },
   plugins: [
     {
@@ -21,7 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/cms/collections/`,
+        path: `${__dirname}/src/cms/`,
         name: `collections`,
       },
     },

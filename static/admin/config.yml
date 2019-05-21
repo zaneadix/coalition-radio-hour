@@ -83,11 +83,12 @@ collections:
         name: "podcastDetails"
         file: "src/cms/podcast-details.md"
         fields:
-        - { label: "Collection", name: "collection", widget: "hidden", default: "podcasts"}
+        - { label: "Collection", name: "collection", widget: "hidden", default: "podcast"}
         - { label: "Title", name: "title", widget: "string" }
         - { label: "Description", name: "description", widget: "string" }
-        - { label: "Cover Art", name: "image", widget: "image" }
+        - { label: "Cover Art", name: "image_url", widget: "image" }
         - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+        - { label: "Copyright", name: "copyright", widget: "string", default: *copyright, required: false }
         - label: "Itunes Specifics"
           name: "itunesPodcastData"
           widget: "object"
@@ -96,15 +97,14 @@ collections:
             - { label: "Owner", name: "owner", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name", required: false }
             - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
             - { label: "Type", name: "type", widget: "select", default: "Episodic", options: ["Episodic", "Serial"] }
-            - { label: "Copyright", name: "copyright", widget: "string", default: *copyright, required: false }
             - { label: "Category 1", name: "category1", widget: "select", options: *categories, default: "_blank_" }
             - { label: "Category 2", name: "category2", widget: "select", options: *categories, default: "_blank_" }
             - { label: "Category 3", name: "category3", widget: "select", options: *categories, default: "_blank_" }
             - { label: "Explicit", name: "explicit", widget: "boolean", default: false }
             - { label: "Block", name: "block", widget: "boolean", default: false }
 
-  - name: crew
-    label: Crew
+  - label: Crew
+    name: crew
     folder: src/cms/collections/crew
     create: true
     slug: "{{slug}}"
@@ -116,8 +116,8 @@ collections:
       - { label: Email, name: "email", widget: "string" }
       - { label: Photo, name: "image", widget: "image" }
   
-  - name: "guests"
-    label: "Guests"
+  - label: "Guests"
+    name: "guests"
     folder: "src/cms/collections/guests"
     create: true
     slug: "{{slug}}"
@@ -127,40 +127,13 @@ collections:
       - { label: "Link", name: "link", widget: "string" }
       - { label: "Photo", name: "image", widget: "image" }
 
-  - name: "podcasts"
-    label: "Podcasts"
-    folder: "src/cms/collections/podcasts"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Collection", name: "collection", widget: "hidden", default: "podcasts"}
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Cover Art", name: "image", widget: "image" }
-      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
-      - label: "Itunes Specifics"
-        name: "itunesPodcastData"
-        widget: "object"
-        fields:
-          - { label: "Author", name: "author", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name" }
-          - { label: "Owner", name: "owner", widget: "relation", collection: "crew", searchFields: ["name"], valueField: "name", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Type", name: "type", widget: "select", default: "Episodic", options: ["Episodic", "Serial"] }
-          - { label: "Copyright", name: "copyright", widget: "string", default: *copyright, required: false }
-          - { label: "Category 1", name: "category1", widget: "select", options: *categories, default: "_blank_" }
-          - { label: "Category 2", name: "category2", widget: "select", options: *categories, default: "_blank_" }
-          - { label: "Category 3", name: "category3", widget: "select", options: *categories, default: "_blank_" }
-          - { label: "Explicit", name: "explicit", widget: "boolean", default: false }
-          - { label: "Block", name: "block", widget: "boolean", default: false }
-            
-  - name: "episodes"
-    label: "Episodes"
+  - label: "Episodes"
+    name: "episodes"
     folder: "src/cms/collections/episodes"
     create: true
     slug: "{{slug}}" # {{year}}-{{month}}-{{day}}-{{slug}}
     fields:
       - { label: "Collection", name: "collection", widget: "hidden", default: "episodes"}
-      - { label: "Podcast", name: "podcast", widget: "relation", collection: "podcasts", searchFields: ["title"], valueField: "title" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
       - { label: "Location", name: "url", widget: "string" }
