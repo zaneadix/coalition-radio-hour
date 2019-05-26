@@ -17,6 +17,8 @@
     "gatsby-source-filesystem": "2.0.33",
     "gatsby-transformer-remark": "2.3.12",
     "gatsby-transformer-sharp": "^2.1.19",
+    "id3-parser": "2.0.0",
+    "music-metadata": "4.0.1",
     "netlify-cms-app": "2.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

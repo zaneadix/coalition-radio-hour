@@ -1,4 +1,5 @@
 const fileName = "rss.xml"
+
 let crewQuery = `
 crew: allMarkdownRemark(filter: {frontmatter: {collection: {eq: "crew"}  } } ) {
   edges { 
@@ -14,6 +15,16 @@ crew: allMarkdownRemark(filter: {frontmatter: {collection: {eq: "crew"}  } } ) {
   }
 }`
 
+let siteQuery = `
+site {
+  siteMetadata {
+    siteUrl
+    ttl
+    language
+    countryOfOrigin
+  }
+}`
+
 let checkCategory = category => {
   return category && category !== "_blank_"
 }
@@ -23,14 +34,7 @@ module.exports = {
   options: {
     query: `
       {
-        site {
-          siteMetadata {
-            siteUrl
-            ttl
-            language
-            countryOfOrigin
-          }
-        }
+        ${siteQuery}
         ${crewQuery}
         podcastDetails: allMarkdownRemark(filter: {frontmatter: {collection: {eq: "podcast"}  } } ) {
           edges { 
@@ -153,14 +157,17 @@ module.exports = {
       {
         query: `
           {
+            ${siteQuery}
             ${crewQuery}
             episodes: allMarkdownRemark(filter: {frontmatter: { collection: {eq: "episodes"}}}, sort: {order: DESC fields: [frontmatter___pubDate]}) {
               edges {
                 node {
                   id
+                  fileAbsolutePath
                   frontmatter {
                     title
-                    url
+                    description
+                    file_location,
                     pubDate
                     itunesEpisodeData {
                       author
@@ -177,24 +184,46 @@ module.exports = {
             }
           }
         `,
-        serialize: ({ query: { crew, episodes } }) => {
-          let crewList = crew.edges.map(edge => edge.node.frontmatter)
-          let episodeList = episodes.edges.map(edge => edge.node.frontmatter)
-
-          // Owner
-          let owner = crew.edges.find(edge => {
-            return edge.node.frontmatter.name === itunes.owner
+        serialize: ({
+          query: {
+            episodes,
+            site: { siteMetadata },
+          },
+        }) => {
+          let episodeList = episodes.edges.map(edge => {
+            return Object.assign(
+              {
+                id: edge.node.id,
+                slug: (/([-_a-z0-9]+)\.md$/gi.exec(
+                  edge.node.fileAbsolutePath
+                ) || [])[1],
+              },
+              edge.node.frontmatter
+            )
           })
-          owner && (owner = owner.node.frontmatter)
 
-          return [
-            {
-              title: "Podcast Title",
-              description: "This is the description",
-              generator: "This should list my own generator cause",
-              site_url: "banana.com",
-            },
-          ]
+          return episodeList.map((episode, index) => {
+            let itunes = episode.itunesEpisodeData
+            let link = `${siteMetadata.siteUrl}/episode/${episode.slug}`
+            return {
+              title: episode.title,
+              description: episode.description,
+              link,
+              guid: `${link}-${episode.id}`,
+              pubDate: episode.pubdate,
+              enclosure: { url: episode.file_location },
+              custom_elements: [
+                { "itunes:subtitle": itunes.subtitle },
+                { "itunes:summary": itunes.summary || episode.description },
+                { "itunes:author": itunes.author },
+                { "itunes:explicit": itunes.explicit ? "Yes" : "No" },
+                { "itunes:block": itunes.block ? "Yes" : "No" },
+                // { "itunes:duration": "00:00" },
+                { "itunes:episode": index + 1 },
+                { "itunes:episodeType": itunes.type },
+              ],
+            }
+          })
         },
         output: `./${fileName}`,
       },

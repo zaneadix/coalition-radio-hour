@@ -136,7 +136,8 @@ collections:
       - { label: "Collection", name: "collection", widget: "hidden", default: "episodes"}
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
-      - { label: "Location", name: "url", widget: "string" }
+      - { label: "File Location", name: "file_location", widget: "string" }
+      - { label: "Audio File", name: "butthole", widget: "anus" }
       - { label: "Cover Art", name: "image", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text" }
       - label: "Itunes Metadata"
