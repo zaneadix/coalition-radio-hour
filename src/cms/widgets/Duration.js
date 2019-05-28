@@ -148,4 +148,4 @@ export class DurationPreview extends Component {
   }
 }
 
-CMS.registerWidget("anus", DurationFile, DurationPreview)
+CMS.registerWidget("duration", DurationFile, DurationPreview)
