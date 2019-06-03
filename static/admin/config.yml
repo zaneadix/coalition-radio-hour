@@ -139,12 +139,12 @@ collections:
       - { label: "Cover Art", name: "image", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "File Location", name: "file_location", widget: "string" }
+      - { label: "File Size In Megabytes", name: "file_size", widget: "number", valueType: "float", default: 0 }
       - label: "Itunes Metadata"
         name: "itunesEpisodeData"
         widget: "object"
         fields:
           - { label: "Duration", name: "duration", widget: "duration"}
-          - { label: "File Size In Megabytes", name: "file_size", widget: "number", valueType: "float", default: 0 }
           - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
           - { label: "Summary", name: "summary", widget: "string", required: false }
           - { label: "Type", name: "type", widget: "select", default: "Full", options: ["Full", "Bonus", "Trailer"] }

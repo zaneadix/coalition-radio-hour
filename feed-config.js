@@ -168,6 +168,7 @@ module.exports = {
                     title
                     description
                     file_location,
+                    file_size,
                     pubDate
                     itunesEpisodeData {
                       author
@@ -210,12 +211,15 @@ module.exports = {
               title: episode.title,
               description: episode.description,
               guid: `${url}-${episode.id}`,
-              date: episode.pubdate,
+              date: episode.pubDate,
               url,
-              enclosure: { url: episode.file_location },
+              enclosure: {
+                url: episode.file_location,
+                size: episode.file_size * 1000000,
+              },
               custom_elements: [
                 // { comments } should link to where comments can be read?
-                { "content:encoded": episode.description },
+                // { "content:encoded": episode.description },
                 { "itunes:title": episode.title },
                 { "itunes:subtitle": itunes.subtitle },
                 { "itunes:summary": itunes.summary || episode.description },
