@@ -218,6 +218,7 @@ module.exports = {
                 { "itunes:author": itunes.author },
                 { "itunes:explicit": itunes.explicit ? "Yes" : "No" },
                 { "itunes:block": itunes.block ? "Yes" : "No" },
+                { "itunes:duration": episode.duration },
                 // { "itunes:duration": "00:00" },
                 { "itunes:episode": index + 1 },
                 { "itunes:episodeType": itunes.type },

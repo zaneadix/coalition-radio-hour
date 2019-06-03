@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React, { Component, createElement } from "react"
+import React, { Component } from "react"
 import CMS from "netlify-cms-app"
 import styled from "@emotion/styled"
 
@@ -13,6 +13,22 @@ let FlexChild = styled("div")`
   }
 `
 
+const DURATION_MATCHER = /^[0-9]?[0-9]:[0-5]?[0-9]:[0-5]?[0-9]$/
+const DEFAULT_DURATION_VALUE = "00:00:00"
+
+function getDurationValue(props) {
+  if (props.value) {
+    return props.value
+  }
+
+  let value = props.field.get("default", "")
+  if (value && !DURATION_MATCHER.test(value)) {
+    console.error(`Default value provided is not valid (${value})`)
+    value = DEFAULT_DURATION_VALUE
+  }
+  return value
+}
+
 export class Duration extends Component {
   matcher = /^(\d+)?:(\d+)?:(\d+)?$/
 
@@ -24,13 +40,12 @@ export class Duration extends Component {
 
   handleChange(e) {
     let { name, value } = e.target
-    value = value.substring(0, 2)
+    value = value.slice(-2)
     value = name === "hours" ? Math.min(value, 99) : Math.min(value, 59)
-    this.props.onChange(
-      this.format({
-        [name]: value,
-      })
-    )
+    let formatted = this.format({
+      [name]: `${value}`,
+    })
+    this.props.onChange(formatted)
   }
 
   format(updates) {
@@ -45,7 +60,7 @@ export class Duration extends Component {
   }
 
   parse() {
-    let groups = this.matcher.exec(this.props.value) || []
+    let groups = this.matcher.exec(getDurationValue(this.props)) || []
     return {
       hours: groups[1] || "",
       minutes: groups[2] || "",
@@ -77,8 +92,7 @@ export class Duration extends Component {
 
     let inputProps = {
       type: "number",
-      min: "0",
-      maxlength: 2,
+      min: 0,
       onChange: this.handleChange,
     }
 
@@ -94,7 +108,7 @@ export class Duration extends Component {
       <div id={forID} {...changeProps}>
         <FlexContainer>
           <FlexChild>
-            <label {...labelProps} for={hoursId}>
+            <label {...labelProps} htmlFor={hoursId}>
               Hours
             </label>
             <input
@@ -103,11 +117,11 @@ export class Duration extends Component {
               id={hoursId}
               name="hours"
               max="99"
-              value={parseInt(hours, 10) || ""}
+              value={parseInt(hours, 10) || 0}
             />
           </FlexChild>
           <FlexChild>
-            <label {...labelProps} for={minutesId}>
+            <label {...labelProps} htmlFor={minutesId}>
               Minutes
             </label>
             <input
@@ -116,11 +130,11 @@ export class Duration extends Component {
               id={minutesId}
               name="minutes"
               max="59"
-              value={parseInt(minutes, 10) || ""}
+              value={parseInt(minutes, 10) || 0}
             />
           </FlexChild>
           <FlexChild>
-            <label {...labelProps} for={secondsId}>
+            <label {...labelProps} htmlFor={secondsId}>
               Seconds
             </label>
             <input
@@ -129,7 +143,7 @@ export class Duration extends Component {
               id={secondsId}
               name="seconds"
               max="59"
-              value={parseInt(seconds, 10) || ""}
+              value={parseInt(seconds, 10) || 0}
             />
           </FlexChild>
         </FlexContainer>
@@ -138,14 +152,12 @@ export class Duration extends Component {
   }
 }
 
-export class DurationPreview extends Component {
-  render() {
-    return (
-      <div>
-        <strong>Duration:</strong> {this.props.value}
-      </div>
-    )
-  }
+export const DurationPreview = props => {
+  return (
+    <div>
+      <strong>Duration:</strong> {getDurationValue(props)}
+    </div>
+  )
 }
 
-CMS.registerWidget("duration", DurationFile, DurationPreview)
+CMS.registerWidget("duration", Duration, DurationPreview)
