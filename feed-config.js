@@ -1,5 +1,9 @@
 const fileName = "rss.xml"
 
+// function imageLocation(siteUrl, imagePath) {
+//   return imagePath
+// }
+
 let crewQuery = `
 crew: allMarkdownRemark(filter: {frontmatter: {collection: {eq: "crew"}  } } ) {
   edges { 
@@ -75,6 +79,8 @@ module.exports = {
       let podcast = podcastDetails.edges[0].node.frontmatter
       let itunes = podcast.itunesPodcastData
 
+      let imagePath = `${siteMetadata.siteUrl}${podcast.image_url}`
+
       // Owner
       let owner = crew.edges.find(edge => {
         return edge.node.frontmatter.name === itunes.owner
@@ -120,8 +126,8 @@ module.exports = {
         { "itunes:summary": podcast.description },
         { "itunes:author": itunes.author },
         { "itunes:type": itunes.type },
-        { "itunes:block": itunes.block },
-        { "itunes:explicit": itunes.explicit },
+        { "itunes:block": itunes.block ? "Yes" : "No" },
+        { "itunes:explicit": itunes.explicit ? "Yes" : "No" },
         {
           "itunes:owner": [
             { "itunes:name": owner.name },
@@ -131,7 +137,7 @@ module.exports = {
         {
           "itunes:image": {
             _attr: {
-              href: podcast.image_url,
+              href: imagePath,
             },
           },
         },
@@ -141,7 +147,7 @@ module.exports = {
         title: podcast.title,
         description: podcast.description,
         pubDate: podcast.pubDate,
-        image_url: podcast.image_url,
+        image_url: imagePath,
         copyright: podcast.copyright,
         site_url: siteMetadata.siteUrl,
         ttl: siteMetadata.ttl,

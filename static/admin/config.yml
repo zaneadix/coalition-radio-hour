@@ -153,5 +153,5 @@ collections:
           - { label: "Block", name: "block", widget: "boolean", default: false }
 
 media_folder: "static/images/uploads"
-public_folder: /static
+public_folder: "/images/uploads"
 # publish_mode: editorial_workflow
