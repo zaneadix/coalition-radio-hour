@@ -173,6 +173,7 @@ module.exports = {
                       author
                       subtitle
                       summary
+                      duration
                       type
                       block
                       explicit
@@ -204,22 +205,24 @@ module.exports = {
 
           return episodeList.map((episode, index) => {
             let itunes = episode.itunesEpisodeData
-            let link = `${siteMetadata.siteUrl}/episode/${episode.slug}`
+            let url = `${siteMetadata.siteUrl}/episode/${episode.slug}`
             return {
               title: episode.title,
               description: episode.description,
-              link,
-              guid: `${link}-${episode.id}`,
-              pubDate: episode.pubdate,
+              guid: `${url}-${episode.id}`,
+              date: episode.pubdate,
+              url,
               enclosure: { url: episode.file_location },
               custom_elements: [
+                // { comments } should link to where comments can be read?
+                { "content:encoded": episode.description },
+                { "itunes:title": episode.title },
                 { "itunes:subtitle": itunes.subtitle },
                 { "itunes:summary": itunes.summary || episode.description },
                 { "itunes:author": itunes.author },
                 { "itunes:explicit": itunes.explicit ? "Yes" : "No" },
                 { "itunes:block": itunes.block ? "Yes" : "No" },
-                { "itunes:duration": episode.duration },
-                // { "itunes:duration": "00:00" },
+                { "itunes:duration": itunes.duration },
                 { "itunes:episode": index + 1 },
                 { "itunes:episodeType": itunes.type },
               ],

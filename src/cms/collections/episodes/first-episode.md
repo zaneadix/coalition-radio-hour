@@ -10,9 +10,9 @@ itunesEpisodeData:
   block: false
   duration: '01:05:02'
   explicit: true
-  file_size: 81.4
+  file_size: 74.4
+  duration: "01:22:31"
   subtitle: episode subtitle
   summary: episode summary
   type: Full
 ---
-
