@@ -14,10 +14,9 @@ file_size: 74.4
 itunesEpisodeData:
   author: Zane Adickes
   block: false
-  duration: '01:05:02'
+  duration: "01:05:02"
   explicit: true
   subtitle: episode subtitle
   summary: episode summary
   type: Full
 ---
-
