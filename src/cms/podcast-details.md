@@ -2,7 +2,7 @@
 collection: podcast
 title: Coalition Radio Hour
 description: Welcome to the 1940's
-image_url: /static/smettboi1.jpeg
+image_url: /images/uploads/me_beach.jpg
 pubDate: 2019-05-17T15:12:33.026Z
 copyright: Zane Adickes 2019
 itunesPodcastData:
