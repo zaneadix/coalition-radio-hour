@@ -47,6 +47,7 @@ module.exports = {
                 title
                 description
                 image_url
+                image_external
                 pubDate
                 copyright
                 itunesPodcastData {
@@ -79,7 +80,8 @@ module.exports = {
       let podcast = podcastDetails.edges[0].node.frontmatter
       let itunes = podcast.itunesPodcastData
 
-      let imagePath = `${siteMetadata.siteUrl}${podcast.image_url}`
+      let imagePath =
+        podcast.image_external || `${siteMetadata.siteUrl}${podcast.image_url}`
 
       // Owner
       let owner = crew.edges.find(edge => {
@@ -176,6 +178,7 @@ module.exports = {
                     file_location,
                     file_size,
                     pubDate
+                    image_external,
                     itunesEpisodeData {
                       author
                       subtitle
@@ -213,6 +216,38 @@ module.exports = {
           return episodeList.map((episode, index) => {
             let itunes = episode.itunesEpisodeData
             let url = `${siteMetadata.siteUrl}/episode/${episode.slug}`
+
+            let imagePath
+            if (episode.image_external || episode.image_url) {
+              imagePath =
+                episode.image_external ||
+                `${siteMetadata.siteUrl}${episode.image_url}`
+            }
+
+            let custom_elements = [
+              // { comments } should link to where comments can be read?
+              // { "content:encoded": episode.description },
+              { "itunes:title": episode.title },
+              { "itunes:subtitle": itunes.subtitle },
+              { "itunes:summary": itunes.summary || episode.description },
+              { "itunes:author": itunes.author },
+              { "itunes:explicit": itunes.explicit ? "Yes" : "No" },
+              { "itunes:block": itunes.block ? "Yes" : "No" },
+              { "itunes:duration": itunes.duration },
+              { "itunes:episode": index + 1 },
+              { "itunes:episodeType": itunes.type },
+            ]
+
+            if (imagePath) {
+              custom_elements.push({
+                "itunes:image": {
+                  _attr: {
+                    href: imagePath,
+                  },
+                },
+              })
+            }
+
             return {
               title: episode.title,
               description: episode.description,
@@ -223,19 +258,7 @@ module.exports = {
                 url: episode.file_location,
                 size: episode.file_size * 1000000,
               },
-              custom_elements: [
-                // { comments } should link to where comments can be read?
-                // { "content:encoded": episode.description },
-                { "itunes:title": episode.title },
-                { "itunes:subtitle": itunes.subtitle },
-                { "itunes:summary": itunes.summary || episode.description },
-                { "itunes:author": itunes.author },
-                { "itunes:explicit": itunes.explicit ? "Yes" : "No" },
-                { "itunes:block": itunes.block ? "Yes" : "No" },
-                { "itunes:duration": itunes.duration },
-                { "itunes:episode": index + 1 },
-                { "itunes:episodeType": itunes.type },
-              ],
+              custom_elements,
             }
           })
         },

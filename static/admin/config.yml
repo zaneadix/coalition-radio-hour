@@ -3,6 +3,8 @@ backend:
   branch: publish
 
 aliases:
+  urlPattern: &urlPattern ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)', "Please enter a valid URL"]
+  imageUrlHint: &imageUrlHint "If you would rather use an image hosted somewhere else, this url will be used for the image instead."
   copyright: &copyright "Zane Adickes 2019"
   categories: &categories [
     "_blank_",
@@ -86,7 +88,8 @@ collections:
         - { label: "Collection", name: "collection", widget: "hidden", default: "podcast"}
         - { label: "Title", name: "title", widget: "string" }
         - { label: "Description", name: "description", widget: "string" }
-        - { label: "Cover Art", name: "image_url", widget: "image" }
+        - { label: "Cover Art", name: "image_url", widget: "image", required: false }
+        - { label: "Cover Art URL", name: "image_external", widget: "string", required: false, pattern: *urlPattern, hint: *imageUrlHint }
         - { label: "Publish Date", name: "pubDate", widget: "datetime" }
         - { label: "Copyright", name: "copyright", widget: "string", default: *copyright, required: false }
         - label: "Itunes Specifics"
@@ -136,7 +139,8 @@ collections:
       - { label: "Collection", name: "collection", widget: "hidden", default: "episodes"}
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
-      - { label: "Cover Art", name: "image", widget: "image", required: false }
+      - { label: "Cover Art", name: "image_url", widget: "image", required: false, hint: "Only provide an image if you want to use an image other than the podcast cover art."}
+      - { label: "Cover Art URL", name: "image_external", widget: "string", required: false, pattern: *urlPattern, hint: *imageUrlHint }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "File Location", name: "file_location", widget: "string" }
       - { label: "File Size In Megabytes", name: "file_size", widget: "number", valueType: "float", default: 0 }
