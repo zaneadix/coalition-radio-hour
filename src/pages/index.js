@@ -1,21 +1,49 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
+import Layout from "../layouts/page-layout"
+// import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+export default ({
+  data: {
+    eps: { edges: episodes },
+  },
+}) => {
+  console.log(episodes)
+  return (
+    <Layout>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <h1>Hey</h1>
+      <h1>All Episodes</h1>
+      {episodes.map(({ node: { frontmatter: episode } }) => (
+        <>
+          <h3>{episode.title}</h3>
+          <p>{episode.description}</p>
+        </>
+      ))}
+      <Link to="/about/">About</Link>
+    </Layout>
+  )
+}
 
-export default IndexPage
+export const query = graphql`
+  query {
+    eps: allMarkdownRemark(
+      filter: { frontmatter: { collection: { eq: "episodes" } } }
+      sort: { order: DESC, fields: [frontmatter___pubDate] }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            description
+            file_location
+            pubDate
+            image_external
+          }
+        }
+      }
+    }
+  }
+`
