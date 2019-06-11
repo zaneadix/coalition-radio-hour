@@ -1,46 +1,46 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import Layout from "../layouts/page-layout"
+import AppLayout from "../layouts/app-layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
+import EpisodeCard from "../components/episode-card"
 
-export default ({
-  data: {
-    eps: { edges: episodes },
-  },
-}) => {
-  console.log(episodes)
+export default ({ data: { remarks } }) => {
+  console.log(remarks)
   return (
-    <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <h1>Hey</h1>
-      <h1>All Episodes</h1>
-      {episodes.map(({ node: { frontmatter: episode } }) => (
+    <AppLayout>
+      {() => (
         <>
-          <h3>{episode.title}</h3>
-          <p>{episode.description}</p>
+          <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+          {remarks.episodes.map(({ node: { data, fields } }) => {
+            return <EpisodeCard {...data} {...fields} />
+          })}
         </>
-      ))}
-      <Link to="/about/">About</Link>
-    </Layout>
+      )}
+    </AppLayout>
   )
 }
 
 export const query = graphql`
   query {
-    eps: allMarkdownRemark(
+    remarks: allMarkdownRemark(
       filter: { frontmatter: { collection: { eq: "episodes" } } }
       sort: { order: DESC, fields: [frontmatter___pubDate] }
     ) {
-      edges {
+      episodes: edges {
         node {
-          frontmatter {
+          data: frontmatter {
             title
             description
             file_location
             pubDate
-            image_external
+            itunes: itunesEpisodeData {
+              duration
+            }
+          }
+          fields {
+            slug
           }
         }
       }
