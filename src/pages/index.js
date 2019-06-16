@@ -16,19 +16,16 @@ let episodeList = css`
   }
 `
 
-export default ({ setEpisode, data: { remarks } }) => {
+export default props => {
+  let { data } = props
+
   return (
     <>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <div className={episodeList}>
-        {remarks.episodes.map(({ node: { data, fields } }) => {
+        {data.remarks.episodes.map(({ node: { data, fields } }) => {
           return (
-            <EpisodeCard
-              key={data.title}
-              setEpisode={setEpisode}
-              {...data}
-              {...fields}
-            />
+            <EpisodeCard key={data.title} {...props} {...data} {...fields} />
           )
         })}
       </div>

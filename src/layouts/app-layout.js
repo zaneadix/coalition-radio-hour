@@ -43,6 +43,7 @@ export default class AppLayout extends Component {
     let child = React.cloneElement(this.props.children, {
       setEpisode: this.setEpisode,
       setPlaying: this.setPlaying,
+      playing,
       episode,
     })
 
