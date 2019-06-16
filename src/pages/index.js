@@ -1,36 +1,24 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { css } from "emotion"
 
 import SEO from "../components/seo"
 import EpisodeCard from "../components/episode-card"
 import Subscribe from "../components/subscribe"
 
-let episodeList = css`
-  .episodeCard {
-    border-bottom: 1px solid #9d9d9d;
-    &:last-of-type {
-      margin-bottom: 4rem;
-      border-bottom: 0px solid;
-    }
-  }
-`
-
 export default props => {
   let { data } = props
 
   return (
-    <>
+    <div>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <div className={episodeList}>
-        {data.remarks.episodes.map(({ node: { data, fields } }) => {
-          return (
-            <EpisodeCard key={data.title} {...props} {...data} {...fields} />
-          )
-        })}
-      </div>
+      {data.remarks.episodes.map(({ node: { data, fields } }) => {
+        return <EpisodeCard key={data.title} {...props} {...data} {...fields} />
+      })}
+      {data.remarks.episodes.map(({ node: { data, fields } }) => {
+        return <EpisodeCard key={data.title} {...props} {...data} {...fields} />
+      })}
       <Subscribe></Subscribe>
-    </>
+    </div>
   )
 }
 

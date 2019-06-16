@@ -1,25 +1,10 @@
 import React, { Component, cloneElement } from "react"
-import { css } from "emotion"
-import "./global.css"
 
 import Banner from "../components/banner"
+import Container from "../components/container"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import AudioPlayer from "../components/audio-player"
-
-let appStyles = css`
-  a {
-    color: #e65032;
-    text-decoration: none;
-  }
-
-  .container {
-    max-width: 1132px;
-    margin: 0 auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-`
 
 export default class AppLayout extends Component {
   constructor(props) {
@@ -51,12 +36,12 @@ export default class AppLayout extends Component {
     })
 
     return (
-      <div className={appStyles}>
+      <div>
         <Banner />
         <Header />
-        <div className="container">
+        <Container>
           <main>{childrenWithProps}</main>
-        </div>
+        </Container>
         <Footer />
         <AudioPlayer
           setPlaying={this.setPlaying}

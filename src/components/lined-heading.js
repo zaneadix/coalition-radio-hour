@@ -1,7 +1,7 @@
 import React from "react"
-import { css } from "emotion"
+import styled from "@emotion/styled"
 
-let linedHeading = css`
+let LinedHeading = styled.h1`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
@@ -24,5 +24,5 @@ let linedHeading = css`
 `
 
 export default props => {
-  return <h1 className={linedHeading}>{props.children}</h1>
+  return <LinedHeading>{props.children}</LinedHeading>
 }

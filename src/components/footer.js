@@ -1,7 +1,9 @@
 import React from "react"
-import { css } from "emotion"
+import styled from "@emotion/styled"
 
-let footer = css`
+import Container from "./container.js"
+
+let Footer = styled.footer`
   background-color: #000;
   color: #fff;
   padding-top: 3rem;
@@ -25,8 +27,8 @@ let footer = css`
 `
 
 export default () => (
-  <footer className={footer}>
-    <div className="container">
+  <Footer>
+    <Container>
       <h3 className="association">
         Proudly associated with the{" "}
         <a href="http://rvacomedy.com" target="_blank_">
@@ -37,6 +39,6 @@ export default () => (
         All rights reserved by Coalition Radio Hour {new Date().getFullYear()}
       </h3>
       <p>Find Us on that new-fangled interweb</p>
-    </div>
-  </footer>
+    </Container>
+  </Footer>
 )

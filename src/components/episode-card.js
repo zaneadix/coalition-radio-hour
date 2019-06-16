@@ -1,35 +1,36 @@
 import React, { Component } from "react"
-import { css } from "emotion"
+import styled from "@emotion/styled"
 import format from "date-fns/format"
 
-let episodeCard = css`
+let EpisodeCardContainer = styled.div`
   padding: 4rem 0;
   border-top: 1px solid #9d9d9d;
-
   &:nth-of-type(1) {
     border-top: none;
   }
+`
 
-  .contentWrap {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
+let EpisodeCardContent = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+`
 
-    .play-box {
-      background-color: #d8d8d8;
-      min-width: 160px;
-      min-height: 160px;
-      margin-right: 3rem;
-    }
-    .title {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-    }
-    .broadcast-date {
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-    }
-  }
+let EpisodeTitle = styled.h2`
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+`
+
+let PlayBox = styled.div`
+  background-color: #d8d8d8;
+  min-width: 160px;
+  min-height: 160px;
+  margin-right: 3rem;
+`
+
+let BroadcastDate = styled.h3`
+  font-weight: 400;
+  margin-bottom: 0.5rem;
 `
 
 export default class EpisodeCard extends Component {
@@ -52,18 +53,18 @@ export default class EpisodeCard extends Component {
   render() {
     let { description, pubDate, title } = this.props
     return (
-      <div className={`episode-card ${episodeCard}`}>
-        <div className="contentWrap">
-          <div className="play-box" onClick={this.handleClick} />
+      <EpisodeCardContainer>
+        <EpisodeCardContent>
+          <PlayBox onClick={this.handleClick} />
           <div className="details">
-            <h2 className="title">{title}</h2>
-            <h3 className="broadcast-date">
+            <EpisodeTitle>{title}</EpisodeTitle>
+            <BroadcastDate>
               Broadcast Date: {format(new Date(pubDate), "MMMM d, YYYY")}
-            </h3>
+            </BroadcastDate>
             <p>{description}</p>
           </div>
-        </div>
-      </div>
+        </EpisodeCardContent>
+      </EpisodeCardContainer>
     )
   }
 }

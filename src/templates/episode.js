@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import AppLayout from "../layouts/app-layout"
 import SEO from "../components/seo"
 
 export default props => {
@@ -12,15 +11,11 @@ export default props => {
   } = props
 
   return (
-    <AppLayout>
-      {() => (
-        <>
-          <SEO title="About" keywords={[`gatsby`, `application`, `react`]} />
-          <h1>{data.title}</h1>
-          <Link to="">Home</Link>
-        </>
-      )}
-    </AppLayout>
+    <div>
+      <SEO title="About" keywords={[`gatsby`, `application`, `react`]} />
+      <h1>{data.title}</h1>
+      <Link to="">Home</Link>
+    </div>
   )
 }
 

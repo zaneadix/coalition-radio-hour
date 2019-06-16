@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import ReactPlayer from "react-player"
 import { css } from "emotion"
 
+import Container from "./container"
 import pauseIcon from "../../static/images/icons/pause.svg"
 import playIcon from "../../static/images/icons/play.svg"
 
@@ -176,7 +177,7 @@ export default class AudioPlayer extends Component {
 
     return (
       <section className={`${playerContainer} ${episode ? "open" : ""}`}>
-        <div className="container">
+        <Container>
           <div className="controls">
             <button onClick={() => setPlaying(!playing)}>
               <svg>
@@ -215,7 +216,7 @@ export default class AudioPlayer extends Component {
             onProgress={this.onProgress}
             onDuration={this.onDuration}
           ></ReactPlayer>
-        </div>
+        </Container>
       </section>
     )
   }

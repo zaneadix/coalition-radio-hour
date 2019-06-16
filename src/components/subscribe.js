@@ -1,9 +1,9 @@
 import React from "react"
-import { css } from "emotion"
+import styled from "@emotion/styled"
 
 import LinedHeading from "./lined-heading"
 
-let subscribe = css`
+let Subscribe = styled.section`
   margin-bottom: 3rem;
 
   .repositories {
@@ -30,7 +30,7 @@ let subscribe = css`
 
 export default props => {
   return (
-    <div className={subscribe}>
+    <Subscribe>
       <LinedHeading>Subscribe</LinedHeading>
       <div className="repositories">
         <a href="http://itunes.com" target="_blank_">
@@ -58,6 +58,6 @@ export default props => {
           <img src="images/logos/rss_black.png" alt="RSS"></img>
         </a>
       </div>
-    </div>
+    </Subscribe>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react"
-import { css } from "emotion"
+import styled from "@emotion/styled"
 
-let banner = css`
+let Banner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@ let banner = css`
 `
 
 export default () => (
-  <div className={banner}>
+  <Banner>
     <h1>Coalition Radio Hour</h1>
-  </div>
+  </Banner>
 )
