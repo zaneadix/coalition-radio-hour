@@ -49,7 +49,6 @@ exports.createPages = ({ graphql, actions }) => {
   `).then(result => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       let { fields, data } = node
-      console.log(data)
       if (fields && fields.slug) {
         let component = ""
         switch (data.collection) {

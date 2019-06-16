@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, cloneElement } from "react"
 import { css } from "emotion"
 import "./global.css"
 
@@ -40,11 +40,14 @@ export default class AppLayout extends Component {
 
   render() {
     let { episode, playing } = this.state
-    let child = React.cloneElement(this.props.children, {
-      setEpisode: this.setEpisode,
-      setPlaying: this.setPlaying,
-      playing,
-      episode,
+    let { children } = this.props
+    let childrenWithProps = React.Children.map(children, child => {
+      return cloneElement(child, {
+        setEpisode: this.setEpisode,
+        setPlaying: this.setPlaying,
+        playing,
+        episode,
+      })
     })
 
     return (
@@ -52,7 +55,7 @@ export default class AppLayout extends Component {
         <Banner />
         <Header />
         <div className="container">
-          <main>{child}</main>
+          <main>{childrenWithProps}</main>
         </div>
         <Footer />
         <AudioPlayer
