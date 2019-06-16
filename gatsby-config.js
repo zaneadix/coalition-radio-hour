@@ -1,4 +1,4 @@
-let feedConfig = require("./feed-config")
+let feedConfig = require("./src/utils/feed-config")
 
 module.exports = {
   siteMetadata: {
@@ -36,7 +36,14 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/index.js`,
       },
     },
+    {
+      resolve: "gatsby-plugin-typography",
+      options: {
+        pathToConfigModule: `src/utils/typography-config.js`,
+      },
+    },
     feedConfig,
+    `gatsby-plugin-svg-sprite`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

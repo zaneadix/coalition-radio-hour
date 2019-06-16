@@ -69,6 +69,7 @@ export class Duration extends Component {
   }
 
   render() {
+    console.log(this.props)
     let {
       forID,
       classNameWrapper,

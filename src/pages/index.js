@@ -1,21 +1,61 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { css } from "emotion"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import EpisodeCard from "../components/episode-card"
+import Subscribe from "../components/subscribe"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+let episodeList = css`
+  .episodeCard {
+    border-bottom: 1px solid #9d9d9d;
+    &:last-of-type {
+      margin-bottom: 4rem;
+      border-bottom: 0px solid;
+    }
+  }
+`
 
-export default IndexPage
+export default props => {
+  let { data } = props
+
+  return (
+    <>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <div className={episodeList}>
+        {data.remarks.episodes.map(({ node: { data, fields } }) => {
+          return (
+            <EpisodeCard key={data.title} {...props} {...data} {...fields} />
+          )
+        })}
+      </div>
+      <Subscribe></Subscribe>
+    </>
+  )
+}
+
+export const query = graphql`
+  query {
+    remarks: allMarkdownRemark(
+      filter: { frontmatter: { collection: { eq: "episodes" } } }
+      sort: { order: DESC, fields: [frontmatter___pubDate] }
+    ) {
+      episodes: edges {
+        node {
+          data: frontmatter {
+            title
+            description
+            file_location
+            pubDate
+            itunes: itunesEpisodeData {
+              duration
+            }
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`
