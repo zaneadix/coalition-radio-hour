@@ -1,24 +1,39 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { css } from "emotion"
 
-import AppLayout from "../layouts/app-layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 import EpisodeCard from "../components/episode-card"
+import Subscribe from "../components/subscribe"
 
-export default ({ data: { remarks } }) => {
-  console.log(remarks)
+let episodeList = css`
+  .episodeCard {
+    border-bottom: 1px solid #9d9d9d;
+    &:last-of-type {
+      margin-bottom: 4rem;
+      border-bottom: 0px solid;
+    }
+  }
+`
+
+export default ({ setEpisode, data: { remarks } }) => {
   return (
-    <AppLayout>
-      {() => (
-        <>
-          <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-          {remarks.episodes.map(({ node: { data, fields } }) => {
-            return <EpisodeCard {...data} {...fields} />
-          })}
-        </>
-      )}
-    </AppLayout>
+    <>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <div className={episodeList}>
+        {remarks.episodes.map(({ node: { data, fields } }) => {
+          return (
+            <EpisodeCard
+              key={data.title}
+              setEpisode={setEpisode}
+              {...data}
+              {...fields}
+            />
+          )
+        })}
+      </div>
+      <Subscribe></Subscribe>
+    </>
   )
 }
 

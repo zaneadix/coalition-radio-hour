@@ -43,7 +43,7 @@ module.exports = {
       },
     },
     feedConfig,
-
+    `gatsby-plugin-svg-sprite`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

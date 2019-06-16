@@ -1,11 +1,11 @@
 import React from "react"
-import { Link } from "gatsby"
 import { css } from "emotion"
 
 let footer = css`
   background-color: #000;
   color: #fff;
-  padding: 3rem 0;
+  padding-top: 3rem;
+  padding-bottom: 7rem;
   text-align: center;
 
   a {

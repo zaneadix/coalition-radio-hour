@@ -8,6 +8,9 @@ let header = css`
 
   a {
     color: #fff;
+    &:visited {
+      color: #fff;
+    }
     &:hover,
     &.active {
       color: #e65032;
@@ -40,6 +43,11 @@ export default () => (
         <Link activeClassName="active" to="/about/">
           About
         </Link>
+      </li>
+      <li className="nav-item">
+        <a href="https://rvacomedy.com/give/" target="_blank_">
+          Support
+        </a>
       </li>
     </ul>
   </header>

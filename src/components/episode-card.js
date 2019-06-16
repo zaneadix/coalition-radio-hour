@@ -1,11 +1,14 @@
 import React from "react"
-import { Link } from "gatsby"
 import { css } from "emotion"
 import format from "date-fns/format"
 
-let cardContainer = css`
+let episodeCard = css`
   padding: 4rem 0;
-  border-bottom: 1px solid #9d9d9d;
+  border-top: 1px solid #9d9d9d;
+
+  &:nth-of-type(1) {
+    border-top: none;
+  }
 
   .contentWrap {
     max-width: 900px;
@@ -14,8 +17,8 @@ let cardContainer = css`
 
     .play-box {
       background-color: #d8d8d8;
-      width: 160px;
-      height: 160px;
+      min-width: 160px;
+      min-height: 160px;
       margin-right: 3rem;
     }
     .title {
@@ -29,18 +32,30 @@ let cardContainer = css`
   }
 `
 
-let flexGutter = css`
-  span {
-    margin-right: 1rem;
-  }
-`
-
 export default props => {
-  let { description, itunes, pubDate, title, slug } = props
+  let {
+    playing,
+    setEpisode,
+    file_location,
+    description,
+    pubDate,
+    title,
+  } = props
   return (
-    <div className={cardContainer}>
+    <div className={`episode-card ${episodeCard}`}>
       <div className="contentWrap">
-        <div className="play-box" />
+        <div
+          className="play-box"
+          onClick={() => {
+            setEpisode(
+              {
+                title,
+                file_location,
+              },
+              !playing
+            )
+          }}
+        />
         <div className="details">
           <h2 className="title">{title}</h2>
           <h3 className="broadcast-date">

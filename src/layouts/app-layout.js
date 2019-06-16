@@ -1,65 +1,65 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { Component } from "react"
 import { css } from "emotion"
 import "./global.css"
 
 import Banner from "../components/banner"
 import Header from "../components/header"
 import Footer from "../components/footer"
-// import AudioPlayer from "../components/audio-player"
+import AudioPlayer from "../components/audio-player"
 
 let appStyles = css`
   a {
     color: #e65032;
     text-decoration: none;
-
-    &.inverse {
-      color: #fff;
-
-      &:hover {
-        color: #e65032;
-      }
-    }
   }
 
   .container {
     max-width: 1132px;
     margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `
 
-const AppLayout = ({ children }) => {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
-  return (
-    <div className={appStyles}>
-      <Banner />
-      <Header />
-      <div className="container">
-        <main>{children()}</main>
+export default class AppLayout extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      episode: null,
+      playing: false,
+    }
+  }
+
+  setEpisode = (episode, playing) => {
+    this.setState({ episode, playing })
+  }
+
+  setPlaying = playing => {
+    this.setState({ playing })
+  }
+
+  render() {
+    let { episode, playing } = this.state
+    let child = React.cloneElement(this.props.children, {
+      setEpisode: this.setEpisode,
+      setPlaying: this.setPlaying,
+      episode,
+    })
+
+    return (
+      <div className={appStyles}>
+        <Banner />
+        <Header />
+        <div className="container">
+          <main>{child}</main>
+        </div>
+        <Footer />
+        <AudioPlayer
+          setPlaying={this.setPlaying}
+          playing={playing}
+          episode={episode}
+        ></AudioPlayer>
       </div>
-      <Footer />
-      {/* <AudioPlayer
-        streamUrl={
-          "https://s3.amazonaws.com/podcast-management/coalition_radio_hour/3-8-19/3-8-19.mp3"
-        }
-        onReady={() => console.log("track is loaded!")}
-      /> */}
-    </div>
-  )
+    )
+  }
 }
-
-// AppLayout.propTypes = {
-//   children: PropTypes.node.isRequired,
-// }
-
-export default AppLayout
