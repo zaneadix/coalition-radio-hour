@@ -1,6 +1,7 @@
 let path = require("path")
+let { siteMetadata } = require("./gatsby-config")
 
-function processEpisodeNode({ node, actions }) {
+function processEpisodeNode({ node, actions, graphql }) {
   let { createNodeField } = actions
   let { frontmatter: data } = node
   let title = data.title.toLowerCase().replace(/\s/g, "-")
@@ -13,6 +14,17 @@ function processEpisodeNode({ node, actions }) {
     node,
     name: `slug`,
     value: slug,
+  })
+
+  createNodeField({
+    node,
+    name: "downloadUrl",
+    value: siteMetadata.podtrac
+      ? data.file_location.replace(
+          /https?:\/\//,
+          "https://dts.podtrac.com/redirect.mp3/"
+        )
+      : date.file_location,
   })
 }
 

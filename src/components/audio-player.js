@@ -104,15 +104,19 @@ let playerContainer = css`
 
 let Duration = ({ className, seconds }) => {
   let date = new Date(seconds * 1000)
-  let hh = `${date.getUTCHours()}`
-  let mm = `${date.getUTCMinutes()}`
-  let ss = `${date.getUTCSeconds()}`.padStart(2, "0")
-  let text = hh ? `${hh}:${mm.padStart(2, "0")}:${ss}` : `${mm}:${ss}`
-  return (
-    <time dateTime={`P${Math.round(seconds)}S`} className={className}>
-      {text}
-    </time>
-  )
+  let formatted = "00:00:00"
+  if (date.toString() !== "Invalid Date") {
+    let hh = `${date.getUTCHours()}`
+    let mm = `${date.getUTCMinutes()}`
+    let ss = `${date.getUTCSeconds()}`.padStart(2, "0")
+    let text = hh ? `${hh}:${mm.padStart(2, "0")}:${ss}` : `${mm}:${ss}`
+    formatted = (
+      <time dateTime={`P${Math.round(seconds)}S`} className={className}>
+        {text}
+      </time>
+    )
+  }
+  return formatted
 }
 
 export default class AudioPlayer extends Component {
@@ -174,47 +178,59 @@ export default class AudioPlayer extends Component {
     let { played, duration } = this.state
     let { playing, episode, setPlaying } = this.props
 
+    console.log(episode)
+
     return (
       <section className={`${playerContainer} ${episode ? "open" : ""}`}>
         <Container>
-          <div className="controls">
-            <button onClick={() => setPlaying(!playing)}>
-              <svg>
-                <use xlinkHref={`#${playing ? pauseIcon.id : playIcon.id}`} />
-              </svg>
-            </button>
-            <div className="scrub">
-              <input
-                className="seek"
-                type="range"
-                style={this.getSliderBackground()}
-                min={0}
-                max={1}
-                step="any"
-                value={played}
-                onMouseDown={this.onSeekMouseDown}
-                onChange={this.onSeekChange}
-                onMouseUp={this.onSeekMouseUp}
-              />
-              <div className="info">
-                <span className="title">Episode Title</span>
-                <div className="time">
-                  <Duration className="elapsed" seconds={duration * played} /> |{" "}
-                  <Duration className="duration" seconds={duration} />
+          {episode ? (
+            <>
+              <div className="controls">
+                <button onClick={() => setPlaying(!playing)}>
+                  <svg>
+                    <use
+                      xlinkHref={`#${playing ? pauseIcon.id : playIcon.id}`}
+                    />
+                  </svg>
+                </button>
+                <div className="scrub">
+                  <input
+                    className="seek"
+                    type="range"
+                    style={this.getSliderBackground()}
+                    min={0}
+                    max={1}
+                    step="any"
+                    value={played}
+                    onMouseDown={this.onSeekMouseDown}
+                    onChange={this.onSeekChange}
+                    onMouseUp={this.onSeekMouseUp}
+                  />
+                  <div className="info">
+                    <span className="title">Episode Title</span>
+                    <div className="time">
+                      <Duration
+                        className="elapsed"
+                        seconds={duration * played}
+                      />{" "}
+                      | <Duration className="duration" seconds={duration} />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <ReactPlayer
-            ref={this.playerRef}
-            url="https://s3.amazonaws.com/podcast-management/coalition_radio_hour/3-8-19/3-8-19.mp3"
-            width="0"
-            height="0"
-            playing={playing}
-            autoPlay={true}
-            onProgress={this.onProgress}
-            onDuration={this.onDuration}
-          ></ReactPlayer>
+
+              <ReactPlayer
+                ref={this.playerRef}
+                url={episode.downloadUrl}
+                width="0"
+                height="0"
+                playing={playing}
+                autoPlay={true}
+                onProgress={this.onProgress}
+                onDuration={this.onDuration}
+              ></ReactPlayer>
+            </>
+          ) : null}
         </Container>
       </section>
     )

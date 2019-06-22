@@ -61,8 +61,8 @@ let BroadcastDate = styled.h3`
 
 export default class EpisodeCard extends Component {
   isActive = () => {
-    let { episode, file_location } = this.props
-    return episode && episode.file_location === file_location
+    let { episode, downloadUrl } = this.props
+    return episode && episode.downloadUrl === downloadUrl
   }
 
   isPlaying = () => {
@@ -74,16 +74,16 @@ export default class EpisodeCard extends Component {
   }
 
   handleClick = () => {
-    let { episode, playing, setEpisode, title, file_location } = this.props
+    let { episode, playing, setEpisode, title, downloadUrl } = this.props
     let playState = true
-    if (episode && episode.file_location === file_location) {
+    if (episode && episode.downloadUrl === downloadUrl) {
       playState = !playing
     }
 
     setEpisode(
       {
         title,
-        file_location,
+        downloadUrl,
       },
       playState
     )

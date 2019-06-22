@@ -11,6 +11,7 @@ module.exports = {
     language: "en",
     countryOfOrigin: "us",
     copyright: "Copyright 2019 All rights reserved.",
+    podtrac: true,
   },
   plugins: [
     `gatsby-plugin-svg-sprite`,

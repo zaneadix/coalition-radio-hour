@@ -19,8 +19,6 @@ const BackgroundSection = ({ children, className }) => (
       }
     `}
     render={data => {
-      // Set ImageData.
-      console.log("BANNER DATA", data)
       const imageData = data.desktop.childImageSharp.fluid
       return (
         <BackgroundImage

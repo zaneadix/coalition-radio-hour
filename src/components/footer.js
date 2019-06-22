@@ -1,6 +1,9 @@
 import React from "react"
 import styled from "@emotion/styled"
 
+// import fbIcon from "../../static/images/icons/fb.svg"
+// import instaIcon from "../../static/images/icons/insta.svg"
+
 import Container from "./container.js"
 
 let Footer = styled.footer`
@@ -14,15 +17,15 @@ let Footer = styled.footer`
     color: #fff;
   }
 
-  p {
-    margin-bottom: 0;
-  }
-
   h3 {
     font-weight: 400;
     &.association {
       margin-bottom: 0.5rem;
     }
+  }
+
+  .links {
+    display: flex;
   }
 `
 
@@ -38,7 +41,14 @@ export default () => (
       <h3>
         All rights reserved by Coalition Radio Hour {new Date().getFullYear()}
       </h3>
-      <p>Find Us on that new-fangled interweb</p>
+      {/* <p>Find Us on that new-fangled interweb</p> */}
+      {/* <div className="links">
+        <a href="https://www.facebook.com/coalitionradiohour/" target="_blank_">
+          <svg>
+            <use xlinkHref={instaIcon.id} />
+          </svg>
+        </a>
+      </div> */}
     </Container>
   </Footer>
 )

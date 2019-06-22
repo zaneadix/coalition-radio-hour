@@ -26,6 +26,7 @@ site {
     ttl
     language
     countryOfOrigin
+    podtrac
   }
 }`
 
@@ -172,6 +173,9 @@ module.exports = {
                 node {
                   id
                   fileAbsolutePath
+                  fields {
+                    downloadUrl
+                  }
                   frontmatter {
                     title
                     description
@@ -205,6 +209,7 @@ module.exports = {
             return Object.assign(
               {
                 id: edge.node.id,
+                downloadUrl: edge.node.fields.downloadUrl,
                 slug: (/([-_a-z0-9]+)\.md$/gi.exec(
                   edge.node.fileAbsolutePath
                 ) || [])[1],
@@ -216,6 +221,12 @@ module.exports = {
           return episodeList.map((episode, index) => {
             let itunes = episode.itunesEpisodeData
             let url = `${siteMetadata.siteUrl}/episode/${episode.slug}`
+            // let fileLocation = siteMetadata.podtrac
+            //   ? episode.file_location.replace(
+            //       /https?:\/\//,
+            //       "https://dts.podtrac.com/redirect.mp3/"
+            //     )
+            //   : episode.file_location
 
             let imagePath
             if (episode.image_external || episode.image_url) {
@@ -255,7 +266,7 @@ module.exports = {
               date: episode.pubDate,
               url,
               enclosure: {
-                url: episode.file_location,
+                url: episode.downloadUrl,
                 size: episode.file_size * 1000000,
               },
               custom_elements,
