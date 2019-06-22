@@ -107,7 +107,7 @@ let Duration = ({ className, seconds }) => {
   let hh = `${date.getUTCHours()}`
   let mm = `${date.getUTCMinutes()}`
   let ss = `${date.getUTCSeconds()}`.padStart(2, "0")
-  let text = hh ? `${hh}:${mm.padStart(2, "0")}:${ss}` : `${mm}:${ss}`x
+  let text = hh ? `${hh}:${mm.padStart(2, "0")}:${ss}` : `${mm}:${ss}`
   return (
     <time dateTime={`P${Math.round(seconds)}S`} className={className}>
       {text}
