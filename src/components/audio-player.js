@@ -129,7 +129,6 @@ export default class AudioPlayer extends Component {
   }
 
   onDuration = duration => {
-    console.log("ON DURATION", duration)
     this.setState({ duration })
   }
 
@@ -174,8 +173,6 @@ export default class AudioPlayer extends Component {
   render() {
     let { played, duration } = this.state
     let { playing, episode, setPlaying } = this.props
-
-    console.log("PLAYED:", played, " DURATION:", duration)
 
     return (
       <section className={`${playerContainer} ${episode ? "open" : ""}`}>
