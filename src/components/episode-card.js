@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import styled from "@emotion/styled"
 import format from "date-fns/format"
 
+import pauseIcon from "../../static/images/icons/pause.svg"
+import playIcon from "../../static/images/icons/play.svg"
+
 let EpisodeCardContainer = styled.div`
   padding: 4rem 0;
   border-top: 1px solid #9d9d9d;
@@ -26,6 +29,29 @@ let PlayBox = styled.div`
   min-width: 160px;
   min-height: 160px;
   margin-right: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+let PlayButton = styled.button`
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    fill: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &.active {
+    background-color: #e65032;
+  }
 `
 
 let BroadcastDate = styled.h3`
@@ -34,6 +60,19 @@ let BroadcastDate = styled.h3`
 `
 
 export default class EpisodeCard extends Component {
+  isActive = () => {
+    let { episode, file_location } = this.props
+    return episode && episode.file_location === file_location
+  }
+
+  isPlaying = () => {
+    let { playing } = this.props
+    if (this.isActive()) {
+      return playing
+    }
+    return false
+  }
+
   handleClick = () => {
     let { episode, playing, setEpisode, title, file_location } = this.props
     let playState = true
@@ -52,10 +91,21 @@ export default class EpisodeCard extends Component {
 
   render() {
     let { description, pubDate, title } = this.props
+
     return (
       <EpisodeCardContainer>
         <EpisodeCardContent>
-          <PlayBox onClick={this.handleClick} />
+          <PlayBox onClick={this.handleClick}>
+            <PlayButton className={this.isActive() ? "active" : ""}>
+              <svg>
+                <use
+                  xlinkHref={`#${
+                    this.isPlaying() ? pauseIcon.id : playIcon.id
+                  }`}
+                />
+              </svg>
+            </PlayButton>
+          </PlayBox>
           <div className="details">
             <EpisodeTitle>{title}</EpisodeTitle>
             <BroadcastDate>

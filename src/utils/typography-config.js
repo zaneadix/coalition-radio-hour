@@ -12,14 +12,14 @@ let stack = [
 
 const typography = new Typography({
   baseFontSize: "16px",
-  baseLineHeight: 1.45,
+  baseLineHeight: 1.6,
   scaleRatio: 2,
   headerFontFamily: stack,
   bodyFontFamily: stack,
   googleFonts: [
     {
       name: "Poppins",
-      styles: ["300", "400", "700"],
+      styles: ["400", "500", "700"],
     },
   ],
 })

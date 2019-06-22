@@ -103,12 +103,16 @@ let playerContainer = css`
 `
 
 let Duration = ({ className, seconds }) => {
+  console.log(seconds)
   let date = new Date(seconds * 1000)
+  console.log(date)
   let hh = `${date.getUTCHours()}`
   let mm = `${date.getUTCMinutes()}`
   let ss = `${date.getUTCSeconds()}`.padStart(2, "0")
+  console.log(hh, mm, ss)
   let text = hh ? `${hh}:${mm.padStart(2, "0")}:${ss}` : `${mm}:${ss}`
 
+  console.log(text)
   return (
     <time dateTime={`P${Math.round(seconds)}S`} className={className}>
       {text}

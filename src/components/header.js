@@ -29,8 +29,8 @@ let Nav = styled.ul`
 let NavItem = styled.li`
   margin-bottom: 0;
   margin-right: 5rem;
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-weight: 500;
+  font-size: 1.2rem;
   padding: 1.2rem 0;
 `
 
