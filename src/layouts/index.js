@@ -7,9 +7,21 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import AudioPlayer from "../components/audio-player"
 
-import { colors } from "../utils/style-vars"
+import { mediaQueries, colors } from "../utils/style-vars"
 
 let globalStyles = css`
+  body,
+  html {
+    // Base font size 12px defined in typography.js
+    ${mediaQueries[0]} {
+      font-size: 14px;
+    }
+
+    ${mediaQueries[1]} {
+      font-size: 16px;
+    }
+  }
+
   a {
     color: ${colors.accentOrange};
     text-decoration: none;

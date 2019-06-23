@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 
+import { mediaQueries } from "../utils/style-vars"
 import LinedHeading from "./lined-heading"
 
 let Subscribe = styled.section`
@@ -14,15 +15,33 @@ let Subscribe = styled.section`
     margin: 0 auto;
 
     img {
-      height: 50px;
+      height: 30px;
       margin-bottom: 0;
     }
 
     a {
-      margin-right: 3rem;
+      margin-right: 2rem;
 
       &:last-of-type {
         margin-right: 0;
+      }
+    }
+
+    ${mediaQueries[0]} {
+      a {
+        margin-right: 2.5rem;
+      }
+      img {
+        height: 40px;
+      }
+    }
+
+    ${mediaQueries[1]} {
+      a {
+        margin-right: 3rem;
+      }
+      img {
+        height: 50px;
       }
     }
   }

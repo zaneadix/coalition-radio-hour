@@ -37,7 +37,6 @@ const BackgroundSection = ({ children, className }) => (
 
 let Banner = styled(BackgroundSection)`
   width: 100%;
-  // height: 240px;
   background-position: bottom center;
   background-repeat: repeat-y;
   background-size: cover;
@@ -46,14 +45,14 @@ let Banner = styled(BackgroundSection)`
   justify-content: center;
 
   .title {
-    height: 280px;
+    height: 220px;
     width: 100%;
-    padding: 1rem 1rem;
+    padding: 1.5rem 1.5rem;
   }
 
   ${mediaQueries[0]} {
     .title {
-      height: 320px;
+      height: 280px;
       padding: 1.5rem 1.5rem;
     }
   }

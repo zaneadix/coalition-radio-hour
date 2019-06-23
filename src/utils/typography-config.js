@@ -11,7 +11,7 @@ let stack = [
 ]
 
 const typography = new Typography({
-  baseFontSize: "16px",
+  baseFontSize: "12px",
   baseLineHeight: 1.6,
   scaleRatio: 2,
   headerFontFamily: stack,

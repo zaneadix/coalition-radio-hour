@@ -18,6 +18,10 @@ let EpisodeCardContent = styled.div`
   max-width: 900px;
   margin: 0 auto;
   display: flex;
+
+  .description {
+    margin-bottom: 0;
+  }
 `
 
 let EpisodeTitle = styled.h2`
@@ -29,8 +33,14 @@ let EpisodeHeader = styled.div`
   display: flex;
   .header-play-button {
     margin-right: 1rem;
-    height: 57px;
-    width: 57px;
+    height: 43px;
+    width: 43px;
+
+    ${mediaQueries[0]} {
+      height: 50px;
+      width: 50px;
+    }
+
     ${mediaQueries[2]} {
       display: none;
     }
@@ -149,7 +159,7 @@ export default class EpisodeCard extends Component {
                 </BroadcastDate>
               </div>
             </EpisodeHeader>
-            <p>{description}</p>
+            <p className="description">{description}</p>
           </div>
         </EpisodeCardContent>
       </EpisodeCardContainer>

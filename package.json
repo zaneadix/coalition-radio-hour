@@ -36,6 +36,7 @@
     "react-player": "1.11.1",
     "react-soundplayer": "1.0.4",
     "react-typography": "0.16.19",
+    "tyjs": "0.0.2",
     "typography": "0.16.19"
   },
   "devDependencies": {
