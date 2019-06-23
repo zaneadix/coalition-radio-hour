@@ -7,9 +7,11 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import AudioPlayer from "../components/audio-player"
 
+import { colors } from "../utils/style-vars"
+
 let globalStyles = css`
   a {
-    color: #e65032;
+    color: ${colors.accentOrange};
     text-decoration: none;
   }
 `

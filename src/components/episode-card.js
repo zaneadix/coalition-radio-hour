@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import styled from "@emotion/styled"
 import format from "date-fns/format"
 
+import { mediaQueries, colors } from "../utils/style-vars"
 import pauseIcon from "../../static/images/icons/pause.svg"
 import playIcon from "../../static/images/icons/play.svg"
 
@@ -24,20 +25,38 @@ let EpisodeTitle = styled.h2`
   margin-bottom: 0.5rem;
 `
 
+let EpisodeHeader = styled.div`
+  display: flex;
+  .header-play-button {
+    margin-right: 1rem;
+    height: 57px;
+    width: 57px;
+    ${mediaQueries[2]} {
+      display: none;
+    }
+  }
+`
+
 let PlayBox = styled.div`
-  background-color: #d8d8d8;
+  display: none;
+  background-color: ${colors.grey};
+  display: none;
   min-width: 160px;
   min-height: 160px;
   margin-right: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  ${mediaQueries[2]} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
-let PlayButton = styled.button`
+let Button = styled.button`
   background-color: #000;
   color: #fff;
   border-radius: 50%;
+  border: 0;
   width: 60px;
   height: 60px;
   display: flex;
@@ -58,6 +77,19 @@ let BroadcastDate = styled.h3`
   font-weight: 400;
   margin-bottom: 0.5rem;
 `
+
+let PlayButton = ({ active, playing, className, onClick }) => {
+  return (
+    <Button
+      className={`${className} ${active ? "active" : ""}`}
+      onClick={onClick}
+    >
+      <svg>
+        <use xlinkHref={`#${playing ? pauseIcon.id : playIcon.id}`} />
+      </svg>
+    </Button>
+  )
+}
 
 export default class EpisodeCard extends Component {
   isActive = () => {
@@ -95,22 +127,28 @@ export default class EpisodeCard extends Component {
     return (
       <EpisodeCardContainer>
         <EpisodeCardContent>
-          <PlayBox onClick={this.handleClick}>
-            <PlayButton className={this.isActive() ? "active" : ""}>
-              <svg>
-                <use
-                  xlinkHref={`#${
-                    this.isPlaying() ? pauseIcon.id : playIcon.id
-                  }`}
-                />
-              </svg>
-            </PlayButton>
+          <PlayBox>
+            <PlayButton
+              onClick={this.handleClick}
+              active={this.isActive()}
+              playing={this.isPlaying()}
+            />
           </PlayBox>
           <div className="details">
-            <EpisodeTitle>{title}</EpisodeTitle>
-            <BroadcastDate>
-              Broadcast Date: {format(new Date(pubDate), "MMMM d, YYYY")}
-            </BroadcastDate>
+            <EpisodeHeader>
+              <PlayButton
+                className="header-play-button"
+                onClick={this.handleClick}
+                active={this.isActive()}
+                playing={this.isPlaying()}
+              />
+              <div>
+                <EpisodeTitle>{title}</EpisodeTitle>
+                <BroadcastDate>
+                  Broadcast Date: {format(new Date(pubDate), "MMMM d, YYYY")}
+                </BroadcastDate>
+              </div>
+            </EpisodeHeader>
             <p>{description}</p>
           </div>
         </EpisodeCardContent>
