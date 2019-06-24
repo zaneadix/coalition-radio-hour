@@ -142,14 +142,15 @@ export default class AudioPlayer extends Component {
     }
   }
 
-  onSeekMouseDown = () => {
-    this.setState({ seeking: true })
-  }
-
   onSeekChange = event => {
     this.setState({ played: parseFloat(event.target.value) })
   }
-  onSeekMouseUp = event => {
+
+  onSeekDown = () => {
+    this.setState({ seeking: true })
+  }
+
+  onSeekUp = event => {
     this.setState({ seeking: false })
     this.player.seekTo(parseFloat(event.target.value))
   }
@@ -202,9 +203,11 @@ export default class AudioPlayer extends Component {
                     max={1}
                     step="any"
                     value={played}
-                    onMouseDown={this.onSeekMouseDown}
                     onChange={this.onSeekChange}
-                    onMouseUp={this.onSeekMouseUp}
+                    onMouseDown={this.onSeekDown}
+                    onMouseUp={this.onSeekUp}
+                    onTouchStart={this.onSeekDown}
+                    onTouchEnd={this.onSeekUp}
                   />
                   <div className="info">
                     <span className="title">Episode Title</span>
