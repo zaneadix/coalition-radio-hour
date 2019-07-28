@@ -1,6 +1,7 @@
 import React, { Component, cloneElement } from "react"
 import { Global, css } from "@emotion/core"
 
+import { ApplicationContext } from "../components/application-context"
 import Banner from "../components/banner"
 import Container from "../components/container"
 import Header from "../components/header"
@@ -58,7 +59,7 @@ export default class AppLayout extends Component {
     })
 
     return (
-      <div>
+      <ApplicationContext>
         <Global styles={globalStyles} />
         <Banner />
         <Header />
@@ -71,7 +72,7 @@ export default class AppLayout extends Component {
           playing={playing}
           episode={episode}
         ></AudioPlayer>
-      </div>
+      </ApplicationContext>
     )
   }
 }

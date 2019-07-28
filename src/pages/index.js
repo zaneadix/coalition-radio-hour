@@ -14,9 +14,6 @@ export default props => {
       {data.remarks.episodes.map(({ node: { data, fields } }) => {
         return <EpisodeCard key={data.title} {...props} {...data} {...fields} />
       })}
-      {data.remarks.episodes.map(({ node: { data, fields } }) => {
-        return <EpisodeCard key={data.title} {...props} {...data} {...fields} />
-      })}
       <Subscribe></Subscribe>
     </div>
   )
