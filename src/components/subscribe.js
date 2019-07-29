@@ -2,6 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 
 import { mediaQueries } from "../utils/style-vars"
+import Image from "../components/image"
 import LinedHeading from "./lined-heading"
 
 let Subscribe = styled.section`
@@ -14,7 +15,7 @@ let Subscribe = styled.section`
     justify-content: center;
     margin: 0 auto;
 
-    img {
+    .gatsby-image-wrapper img {
       height: 30px;
       margin-bottom: 0;
     }
@@ -50,7 +51,7 @@ let Subscribe = styled.section`
 export default props => {
   return (
     <Subscribe>
-      <LinedHeading>Subscribe</LinedHeading>
+      <LinedHeading size="h1">Subscribe</LinedHeading>
       <div className="repositories">
         <a href="http://itunes.com" target="_blank_">
           <img

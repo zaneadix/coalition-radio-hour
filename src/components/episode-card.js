@@ -3,8 +3,8 @@ import styled from "@emotion/styled"
 import format from "date-fns/format"
 
 import { mediaQueries, colors } from "../utils/style-vars"
-import pauseIcon from "../../static/images/icons/pause.svg"
-import playIcon from "../../static/images/icons/play.svg"
+import pauseIcon from "../images/icons/pause.svg"
+import playIcon from "../images/icons/play.svg"
 
 let EpisodeCardContainer = styled.div`
   padding: 4rem 0;

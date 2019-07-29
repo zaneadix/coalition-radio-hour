@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
+import ConsumerContext from "../components/application-context"
 import SEO from "../components/seo"
 
 export default props => {
@@ -11,11 +12,20 @@ export default props => {
   } = props
 
   return (
-    <div>
-      <SEO title="About" keywords={[`gatsby`, `application`, `react`]} />
-      <h1>{data.title}</h1>
-      <Link to="">Home</Link>
-    </div>
+    <ConsumerContext>
+      {({ context, set }) => {
+        if (context.banner !== "brand") {
+          set({ banner: "brand" })
+        }
+        return (
+          <div>
+            <SEO title="About" keywords={[`gatsby`, `application`, `react`]} />
+            <h1>{data.title}</h1>
+            <Link to="">Home</Link>
+          </div>
+        )
+      }}
+    </ConsumerContext>
   )
 }
 

@@ -3,8 +3,8 @@ import ReactPlayer from "react-player"
 import { css } from "emotion"
 
 import Container from "./container"
-import pauseIcon from "../../static/images/icons/pause.svg"
-import playIcon from "../../static/images/icons/play.svg"
+import pauseIcon from "../images/icons/pause.svg"
+import playIcon from "../images/icons/play.svg"
 
 let trackStyles = `
   width: 100%;

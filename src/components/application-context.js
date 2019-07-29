@@ -1,8 +1,7 @@
-// Context.js
 import React from "react"
 
 const defaultContext = {
-  data: {
+  context: {
     banner: "brand",
   },
   set: () => {},
@@ -22,8 +21,8 @@ class ApplicationContext extends React.Component {
 
   setData(newData) {
     this.setState(state => ({
-      data: {
-        ...state.data,
+      context: {
+        ...state.context,
         ...newData,
       },
     }))
