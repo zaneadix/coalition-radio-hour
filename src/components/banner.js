@@ -28,32 +28,30 @@ let BackgroundSection = ({ background, children, className }) => (
       }
     `}
     render={backgroundData => {
-      return (
-        <ConsumerContext>
-          {({ context }) => {
-            console.log(context.banner)
-            let bg = backgroundData[context.banner]
+      // return (
+      // <ConsumerContext>
+      //   {({ context }) => {
+      let bg = backgroundData.brand
+      let comp = null
+      if (bg) {
+        comp = (
+          <BackgroundImage
+            Tag="section"
+            className={className}
+            fluid={bg.childImageSharp.fluid}
+            backgroundColor={`#040e18`}
+          >
+            <svg className={`title brand`}>
+              <use xlinkHref={`#${title.id}`} />
+            </svg>
+          </BackgroundImage>
+        )
+      }
 
-            let comp = null
-            if (bg) {
-              comp = (
-                <BackgroundImage
-                  Tag="section"
-                  className={className}
-                  fluid={bg.childImageSharp.fluid}
-                  backgroundColor={`#040e18`}
-                >
-                  <svg className={`title ${context.banner}`}>
-                    <use xlinkHref={`#${title.id}`} />
-                  </svg>
-                </BackgroundImage>
-              )
-            }
-
-            return comp
-          }}
-        </ConsumerContext>
-      )
+      return comp
+      //   }}
+      // </ConsumerContext>
+      // )
     }}
   />
 )

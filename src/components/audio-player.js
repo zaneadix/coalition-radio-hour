@@ -179,8 +179,6 @@ export default class AudioPlayer extends Component {
     let { played, duration } = this.state
     let { playing, episode, setPlaying } = this.props
 
-    console.log(episode)
-
     return (
       <section className={`${playerContainer} ${episode ? "open" : ""}`}>
         <Container>
