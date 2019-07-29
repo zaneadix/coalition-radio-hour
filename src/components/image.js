@@ -27,7 +27,7 @@ export default props => (
         return props.src ? image.node.relativePath === props.src : null
       })
       image && (image = image.node.childImageSharp)
-      return image ? <Image alt={props.alt} fixed={image.fixed} /> : null
+      return image ? <Image alt={props.alt} fluid={image.fluid} /> : null
     }}
   />
 )
