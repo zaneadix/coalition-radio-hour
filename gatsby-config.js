@@ -1,4 +1,4 @@
-let feedConfig = require("./src/utils/feed-config")
+// let feedConfig = require("./src/utils/feed-config")
 
 module.exports = {
   siteMetadata: {
@@ -20,7 +20,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-emotion`,
     `gatsby-transformer-remark`,
-    feedConfig,
+    // feedConfig,
     {
       resolve: `gatsby-plugin-layout`,
     },

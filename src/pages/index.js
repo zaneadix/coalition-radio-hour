@@ -7,7 +7,13 @@ import EpisodeCard from "../components/episode-card"
 import Subscribe from "../components/subscribe"
 
 export default props => {
-  let { data } = props
+  let {
+    data: {
+      allEpisode: { edges: episodes },
+    },
+  } = props
+
+  console.log(episodes)
 
   return (
     <ConsumerContext>
@@ -18,15 +24,9 @@ export default props => {
         return (
           <div>
             <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-            {data.remarks.episodes.map(({ node: { data, fields } }) => {
-              return (
-                <EpisodeCard
-                  key={data.title}
-                  {...props}
-                  {...data}
-                  {...fields}
-                />
-              )
+            {episodes.map(({ node }) => {
+              console.log(node)
+              return <EpisodeCard key={node.id} {...props} {...node} />
             })}
             <Subscribe></Subscribe>
           </div>
@@ -38,25 +38,15 @@ export default props => {
 
 export const query = graphql`
   query {
-    remarks: allMarkdownRemark(
-      filter: { frontmatter: { collection: { eq: "episodes" } } }
-      sort: { order: DESC, fields: [frontmatter___pubDate] }
-    ) {
-      episodes: edges {
+    allEpisode(sort: { order: DESC, fields: [publish_time] }) {
+      edges {
         node {
-          data: frontmatter {
-            title
-            description
-            file_location
-            pubDate
-            itunes: itunesEpisodeData {
-              duration
-            }
-          }
-          fields {
-            slug
-            downloadUrl
-          }
+          id
+          title
+          content
+          publish_time
+          duration
+          media_url
         }
       }
     }

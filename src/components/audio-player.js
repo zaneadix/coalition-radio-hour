@@ -179,8 +179,6 @@ export default class AudioPlayer extends Component {
     let { played, duration } = this.state
     let { playing, episode, setPlaying } = this.props
 
-    console.log(episode)
-
     return (
       <section className={`${playerContainer} ${episode ? "open" : ""}`}>
         <Container>
@@ -224,7 +222,7 @@ export default class AudioPlayer extends Component {
 
               <ReactPlayer
                 ref={this.playerRef}
-                url={episode.downloadUrl}
+                url={episode.media_url}
                 width="0"
                 height="0"
                 playing={playing}

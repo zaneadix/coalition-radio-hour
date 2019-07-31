@@ -116,23 +116,23 @@ export default class EpisodeCard extends Component {
   }
 
   handleClick = () => {
-    let { episode, playing, setEpisode, title, downloadUrl } = this.props
+    let { episode, playing, setEpisode, title, media_url } = this.props
     let playState = true
-    if (episode && episode.downloadUrl === downloadUrl) {
+    if (episode && episode.media_url === media_url) {
       playState = !playing
     }
 
     setEpisode(
       {
         title,
-        downloadUrl,
+        media_url,
       },
       playState
     )
   }
 
   render() {
-    let { description, pubDate, title } = this.props
+    let { content, publish_time, title } = this.props
 
     return (
       <EpisodeCardContainer>
@@ -155,11 +155,15 @@ export default class EpisodeCard extends Component {
               <div>
                 <EpisodeTitle>{title}</EpisodeTitle>
                 <BroadcastDate>
-                  Broadcast Date: {format(new Date(pubDate), "MMMM d, YYYY")}
+                  Broadcast Date:{" "}
+                  {format(new Date(publish_time * 1000), "MMMM d, YYYY")}
                 </BroadcastDate>
               </div>
             </EpisodeHeader>
-            <p className="description">{description}</p>
+            <div
+              className="description"
+              dangerouslySetInnerHTML={{ __html: content }}
+            ></div>
           </div>
         </EpisodeCardContent>
       </EpisodeCardContainer>
