@@ -2,7 +2,6 @@ import React from "react"
 import styled from "@emotion/styled"
 
 import { mediaQueries } from "../utils/style-vars"
-import Image from "../components/image"
 import LinedHeading from "./lined-heading"
 
 let Subscribe = styled.section`
@@ -15,7 +14,7 @@ let Subscribe = styled.section`
     justify-content: center;
     margin: 0 auto;
 
-    .gatsby-image-wrapper img {
+    img {
       height: 30px;
       margin-bottom: 0;
     }

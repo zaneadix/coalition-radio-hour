@@ -31,6 +31,11 @@ let EpisodeTitle = styled.h2`
 
 let EpisodeHeader = styled.div`
   display: flex;
+
+  .title-wrapper {
+    flex: 1;
+  }
+
   .header-play-button {
     margin-right: 1rem;
     height: 43px;
@@ -152,7 +157,7 @@ export default class EpisodeCard extends Component {
                 active={this.isActive()}
                 playing={this.isPlaying()}
               />
-              <div>
+              <div class="title-wrapper">
                 <EpisodeTitle>{title}</EpisodeTitle>
                 <BroadcastDate>
                   Broadcast Date:{" "}
