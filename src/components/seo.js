@@ -19,6 +19,7 @@ function SEO({ description, lang, meta, keywords, title }) {
             title
             description
             author
+            siteUrl
           }
         }
       }
@@ -34,6 +35,7 @@ function SEO({ description, lang, meta, keywords, title }) {
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      link={[{ rel: "icon", type: "image/png", href: "masky.png" }]}
       meta={[
         {
           name: `description`,
@@ -50,6 +52,14 @@ function SEO({ description, lang, meta, keywords, title }) {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:image`,
+          content: `https://mcdn.podbean.com/mf/web/u76hwx/brand-share.png`,
+        },
+        {
+          property: `og:url`,
+          content: site.metaDescription.siteUrl,
         },
         {
           name: `twitter:card`,
