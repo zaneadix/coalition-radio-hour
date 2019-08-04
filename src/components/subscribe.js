@@ -64,7 +64,10 @@ export default props => {
             alt="Google Podcasts"
           ></img>
         </a>
-        <a href="https://radiopublic.com" target="_blank_">
+        <a
+          href="https://radiopublic.com/coalition-radio-hour-6vrJpX"
+          target="_blank_"
+        >
           <img src="images/logos/radiopublic_black.png" alt="RadioPublic"></img>
         </a>
         <a href="https://spotify.com" target="_blank_">
@@ -73,7 +76,7 @@ export default props => {
         <a href="https://stitcher.com" target="_blank_">
           <img src="images/logos/stitcher_black.png" alt="Stitcher"></img>
         </a>
-        <a href="https://poop.com" target="_blank_">
+        <a href="https://feed.podbean.com/zaneadix/feed.xml" target="_blank_">
           <img src="images/logos/rss_black.png" alt="RSS"></img>
         </a>
       </div>

@@ -26,7 +26,9 @@ function SEO({ description, lang, meta, keywords, title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  let { title: siteTitle, author, siteUrl } = site.siteMetadata
+
+  let metaDescription = description || site.siteMetadata.description
 
   return (
     <Helmet
@@ -34,8 +36,16 @@ function SEO({ description, lang, meta, keywords, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      link={[{ rel: "icon", type: "image/png", href: "masky.png" }]}
+      titleTemplate={`${siteTitle} | %s`}
+      link={[
+        { rel: "icon", type: "image/png", href: "masky.png" },
+        {
+          rel: "alternative",
+          type: "application/rss+xml",
+          title: "Coalition Radio Hour",
+          href: "https://feed.podbean.com/zaneadix/feed.xml",
+        },
+      ]}
       meta={[
         {
           name: `description`,
@@ -43,7 +53,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: `${siteTitle} | ${title}`,
         },
         {
           property: `og:description`,
@@ -58,8 +68,16 @@ function SEO({ description, lang, meta, keywords, title }) {
           content: `https://mcdn.podbean.com/mf/web/u76hwx/brand-share.png`,
         },
         {
+          property: `og:image:secure_url`,
+          content: `https://mcdn.podbean.com/mf/web/u76hwx/brand-share.png`,
+        },
+        {
+          property: `og:site_name`,
+          content: siteTitle,
+        },
+        {
           property: `og:url`,
-          content: site.siteMetadata.siteUrl,
+          content: siteUrl,
         },
         {
           name: `twitter:card`,
@@ -67,7 +85,11 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: author,
+        },
+        {
+          property: `twitter:image`,
+          content: `https://mcdn.podbean.com/mf/web/u76hwx/brand-share.png`,
         },
         {
           name: `twitter:title`,

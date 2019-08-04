@@ -5,7 +5,6 @@ import ConsumerContext from "../components/application-context"
 import Image from "../components/image"
 import LinedHeading from "../components/lined-heading"
 import SEO from "../components/seo"
-// import Subscribe from "../components/subscribe"
 import { mediaQueries } from "../utils/style-vars"
 
 let castMembers = [
@@ -166,7 +165,7 @@ export default () => (
       }
       return (
         <AboutPage>
-          <SEO title="About" keywords={[`gatsby`, `application`, `react`]} />
+          <SEO title="About" />
 
           <div className="description-wrapper">
             <div className="description">

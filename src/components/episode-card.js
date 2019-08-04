@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import styled from "@emotion/styled"
-import format from "date-fns/format"
+// import format from "date-fns/format"
 
 import { mediaQueries, colors } from "../utils/style-vars"
 import pauseIcon from "../images/icons/pause.svg"

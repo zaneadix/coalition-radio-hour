@@ -23,9 +23,8 @@ export default props => {
         }
         return (
           <div>
-            <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+            <SEO title="Episodes" />
             {episodes.map(({ node }) => {
-              console.log(node)
               return <EpisodeCard key={node.id} {...props} {...node} />
             })}
             <Subscribe></Subscribe>
