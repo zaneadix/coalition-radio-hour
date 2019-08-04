@@ -59,7 +59,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:url`,
-          content: site.metaDescription.siteUrl,
+          content: site.siteMetadata.siteUrl,
         },
         {
           name: `twitter:card`,
