@@ -160,7 +160,7 @@ export default class EpisodeCard extends Component {
               <div class="title-wrapper">
                 <EpisodeTitle>{title}</EpisodeTitle>
                 <BroadcastDate>
-                  Broadcast Date: {new Date(publish_time * 1000).toDateString()}
+                  {new Date(publish_time * 1000).toDateString()}
                 </BroadcastDate>
               </div>
             </EpisodeHeader>

@@ -81,6 +81,7 @@ let Cast = styled.div`
   padding: 0;
   margin-bottom: 2.5rem;
   text-align: center;
+  justify-content: center;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -221,6 +222,16 @@ export default () => (
               </CastMember>
             ))}
           </Cast>
+          <Cast className="center">
+            <CastMember>
+              <h6 className="name">David Pijor</h6>
+              <LinedHeading className="as" size="h6">
+                as
+              </LinedHeading>
+              <h3>Sir Ian Killbreath</h3>
+            </CastMember>
+          </Cast>
+
           <Cast>
             <CrewBlock>
               <h1>Music By</h1>
