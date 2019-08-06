@@ -58,25 +58,34 @@ export default props => {
             alt="Apple Podcasts"
           ></img>
         </a>
-        <a href="https://podcasts.google.com/about" target="_blank_">
+        {/* <a href="https://podcasts.google.com/about" target="_blank_">
           <img
             src="images/logos/google_podcasts_black.png"
             alt="Google Podcasts"
           ></img>
-        </a>
+        </a> */}
         <a
           href="https://radiopublic.com/coalition-radio-hour-6vrJpX"
           target="_blank_"
         >
           <img src="images/logos/radiopublic_black.png" alt="RadioPublic"></img>
         </a>
-        <a href="https://spotify.com" target="_blank_">
+        <a
+          href="https://open.spotify.com/show/46pkbj2c2D86FvqMNsFrVL"
+          target="_blank_"
+        >
           <img src="images/logos/spotify_black.png" alt="Spotify"></img>
         </a>
-        <a href="https://stitcher.com" target="_blank_">
+        <a
+          href="https://www.stitcher.com/podcast/zane-adickes/coalition-radio-hour"
+          target="_blank_"
+        >
           <img src="images/logos/stitcher_black.png" alt="Stitcher"></img>
         </a>
-        <a href="https://feed.podbean.com/zaneadix/feed.xml" target="_blank_">
+        <a
+          href="http://feeds.feedburner.com/CoalitionRadioHour"
+          target="_blank_"
+        >
           <img src="images/logos/rss_black.png" alt="RSS"></img>
         </a>
       </div>
