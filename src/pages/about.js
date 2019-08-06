@@ -98,7 +98,6 @@ let Cast = styled.div`
 
 let CastMember = styled.div`
   width: 48%;
-  margin-right: 4%;
   margin-bottom: 2rem;
 
   hr {
@@ -109,24 +108,27 @@ let CastMember = styled.div`
   .gatsby-image-wrapper {
     margin-bottom: 1rem;
   }
+  &.grid-item {
+    margin-right: 4%;
 
-  &:nth-of-type(2n) {
-    margin-right: 0;
-  }
-
-  ${mediaQueries[1]} {
-    width: 42%;
-    margin-right: 16%;
-  }
-
-  ${mediaQueries[2]} {
-    width: 23.5%;
-    margin-right: 2%;
     &:nth-of-type(2n) {
-      margin-right: 2%;
-    }
-    &:nth-of-type(4n) {
       margin-right: 0;
+    }
+
+    ${mediaQueries[1]} {
+      width: 42%;
+      margin-right: 16%;
+    }
+
+    ${mediaQueries[2]} {
+      width: 23.5%;
+      margin-right: 2%;
+      &:nth-of-type(2n) {
+        margin-right: 2%;
+      }
+      &:nth-of-type(4n) {
+        margin-right: 0;
+      }
     }
   }
 `
@@ -209,7 +211,7 @@ export default () => (
 
           <Cast>
             {castMembers.map(member => (
-              <CastMember>
+              <CastMember className="grid-item">
                 <Image
                   src={`${member.image}.png`}
                   alt={`${member.name} is ${member.character}`}
