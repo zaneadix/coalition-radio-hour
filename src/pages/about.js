@@ -175,8 +175,8 @@ export default () => (
               <h1>Prepare to be thrilled, shocked, and awed!</h1>
               <p>
                 Coalition Radio Hour is a live, improvised radio drama
-                production performed and recorded at the the Coalition Theater
-                in Richmond VA. Crammed with Romance! Intrigue! Murder!? Each
+                production performed and recorded at the Coalition Theater in
+                Richmond VA. Crammed with Romance! Intrigue! Murder!? Each
                 episode features two heart-pounding dramas, with live musical
                 accompaniment, mildly intrusive commercial breaks, and more!
                 This is a trip to the 1940s you won't want to miss!
