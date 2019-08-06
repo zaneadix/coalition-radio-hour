@@ -52,7 +52,10 @@ export default props => {
     <Subscribe>
       <LinedHeading size="h1">Subscribe</LinedHeading>
       <div className="repositories">
-        <a href="http://itunes.com" target="_blank_">
+        <a
+          href="https://podcasts.apple.com/us/podcast/coalition-radio-hour/id1475407136"
+          target="_blank_"
+        >
           <img
             src="images/logos/apple_podcasts_black.png"
             alt="Apple Podcasts"
