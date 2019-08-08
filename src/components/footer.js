@@ -103,12 +103,15 @@ export default () => (
       <div className="footer-body">
         <div className="social">
           <h3>Find us on that new-fangled interweb</h3>
-          <a href="https://www.facebook.com/coalitionradiohour">
+          <a
+            href="https://www.facebook.com/coalitionradiohour"
+            target="_blank_"
+          >
             <svg>
               <use xlinkHref={`#${facebook.id}`} />
             </svg>
           </a>
-          <a href="https://www.instagram.com/rvacomedy">
+          <a href="https://www.instagram.com/rvacomedy" target="_blank_">
             <svg>
               <use xlinkHref={`#${instagram.id}`} />
             </svg>

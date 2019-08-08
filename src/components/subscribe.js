@@ -61,12 +61,15 @@ export default props => {
             alt="Apple Podcasts"
           ></img>
         </a>
-        {/* <a href="https://podcasts.google.com/about" target="_blank_">
+        <a
+          href="https://podcasts.google.com/?feed=aHR0cHM6Ly9mZWVkLnBvZGJlYW4uY29tL3phbmVhZGl4L2ZlZWQueG1s"
+          target="_blank_"
+        >
           <img
             src="images/logos/google_podcasts_black.png"
             alt="Google Podcasts"
           ></img>
-        </a> */}
+        </a>
         <a
           href="https://radiopublic.com/coalition-radio-hour-6vrJpX"
           target="_blank_"
