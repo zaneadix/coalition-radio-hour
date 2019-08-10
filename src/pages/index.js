@@ -46,6 +46,7 @@ export const query = graphql`
           publish_time
           duration
           media_url
+          slug
         }
       }
     }

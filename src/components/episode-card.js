@@ -27,6 +27,13 @@ let EpisodeCardContent = styled.div`
 let EpisodeTitle = styled.h2`
   margin-top: 0;
   margin-bottom: 0.5rem;
+
+  a {
+    color: #000;
+    &:hover {
+      color: ${colors.accentOrange};
+    }
+  }
 `
 
 let EpisodeHeader = styled.div`
@@ -137,10 +144,10 @@ export default class EpisodeCard extends Component {
   }
 
   render() {
-    let { content, publish_time, title } = this.props
+    let { content, publish_time, title, slug } = this.props
 
     return (
-      <EpisodeCardContainer>
+      <EpisodeCardContainer id={slug}>
         <EpisodeCardContent>
           <PlayBox>
             <PlayButton
@@ -157,8 +164,10 @@ export default class EpisodeCard extends Component {
                 active={this.isActive()}
                 playing={this.isPlaying()}
               />
-              <div class="title-wrapper">
-                <EpisodeTitle>{title}</EpisodeTitle>
+              <div className="title-wrapper">
+                <EpisodeTitle>
+                  <a href={`#${slug}`}>{title}</a>
+                </EpisodeTitle>
                 <BroadcastDate>
                   {new Date(publish_time * 1000).toDateString()}
                 </BroadcastDate>

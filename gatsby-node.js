@@ -39,6 +39,7 @@ exports.sourceNodes = async ({ actions }) => {
           contentDigest,
         },
         ...episode,
+        slug: episode.title.replace(/\s/g, "_").toLowerCase(),
       })
     })
   } catch (error) {
