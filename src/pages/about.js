@@ -9,7 +9,7 @@ import { mediaQueries } from "../utils/style-vars"
 
 let castMembers = [
   {
-    name: "Dustin Coreale",
+    name: "Dustin Correale",
     character: "Tag Taylor",
     image: "tag",
   },
