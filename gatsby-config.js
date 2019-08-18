@@ -2,8 +2,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Coalition Radio Hour Podcast`,
-    description: `A live improvised radio drama production crammed with romance! intrigue! murder!?`,
+    title: `Coalition Radio Hour`,
+    description: `Coalition Radio Hour is a live improvised radio drama production crammed with romance! intrigue! murder!?`,
     author: `Zane Adickes`,
     // RSS stuff
     siteUrl: "https://www.coalitionradiohour.com",

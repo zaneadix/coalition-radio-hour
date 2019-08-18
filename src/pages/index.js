@@ -23,7 +23,7 @@ export default props => {
         }
         return (
           <div>
-            <SEO title="Episodes" />
+            <SEO />
             {episodes.map(({ node }) => {
               return <EpisodeCard key={node.id} {...props} {...node} />
             })}
