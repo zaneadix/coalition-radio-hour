@@ -168,7 +168,7 @@ export default () => (
       }
       return (
         <AboutPage>
-          <SEO title="About" />
+          <SEO pageTitle="About" />
 
           <div className="description-wrapper">
             <div className="description">
