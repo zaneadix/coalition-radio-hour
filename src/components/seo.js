@@ -36,7 +36,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={`${siteTitle} | %s`}
+      // titleTemplate={`${siteTitle} | %s`}
       link={[
         { rel: "icon", type: "image/png", href: "masky.png" },
         {
