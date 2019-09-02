@@ -115,8 +115,8 @@ let PlayButton = ({ active, playing, className, onClick }) => {
 
 export default class EpisodeCard extends Component {
   isActive = () => {
-    let { episode, downloadUrl } = this.props
-    return episode && episode.downloadUrl === downloadUrl
+    let { episode, media_url } = this.props
+    return episode && episode.media_url === media_url
   }
 
   isPlaying = () => {
